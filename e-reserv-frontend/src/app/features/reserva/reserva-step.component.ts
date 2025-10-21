@@ -7,6 +7,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReservationService } from '../../core/services/reservation.service';
 import { HttpClient } from '@angular/common/http';
@@ -24,6 +25,7 @@ import { Unit } from '../../core/models/unit.model';
     MatButtonModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatIconModule,
   ],
   template: `
     <div class="unit-page">
@@ -38,37 +40,51 @@ import { Unit } from '../../core/models/unit.model';
 
         <form [formGroup]="form" class="form-wrap compact">
           <div class="grid-2">
-            <mat-form-field appearance="outline">
-              <mat-label>Data da reserva</mat-label>
-              <input matInput [matDatepicker]="picker" formControlName="date" />
-              <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
+            <div class="field-block">
+              <div class="field-title">Data da reserva</div>
+              <mat-form-field appearance="fill" class="field">
+                <mat-icon matPrefix>event</mat-icon>
+                <input matInput [matDatepicker]="picker" formControlName="date" />
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
 
-            <mat-form-field appearance="outline">
-              <mat-label>Horário</mat-label>
-              <input matInput placeholder="12:00h" formControlName="time" />
-            </mat-form-field>
+            <div class="field-block">
+              <div class="field-title">Horário</div>
+              <mat-form-field appearance="fill" class="field">
+                <mat-icon matPrefix>schedule</mat-icon>
+                <input matInput placeholder="12:00h" formControlName="time" />
+              </mat-form-field>
+            </div>
 
-            <mat-form-field appearance="outline">
-              <mat-label>Quantidade de pessoas</mat-label>
-              <input matInput type="number" min="1" formControlName="people" />
-            </mat-form-field>
+            <div class="field-block">
+              <div class="field-title">Quantidade de pessoas</div>
+              <mat-form-field appearance="fill" class="field">
+                <mat-icon matPrefix>group</mat-icon>
+                <input matInput type="number" min="1" formControlName="people" />
+              </mat-form-field>
+            </div>
 
-            <mat-form-field appearance="outline">
-              <mat-label>Ambiente</mat-label>
-              <mat-select formControlName="area">
-                <mat-option value="salão">Salão</mat-option>
-                <mat-option value="lounge">Lounge bar</mat-option>
-                <mat-option value="externa">Área externa</mat-option>
-                <mat-option value="bar">Bar</mat-option>
-              </mat-select>
-            </mat-form-field>
+            <div class="field-block">
+              <div class="field-title">Ambiente</div>
+              <mat-form-field appearance="fill" class="field">
+                <mat-icon matPrefix>cottage</mat-icon>
+                <mat-select formControlName="area">
+                  <mat-option value="salao">Salão</mat-option>
+                  <mat-option value="lounge">Lounge bar</mat-option>
+                  <mat-option value="externa">Área externa</mat-option>
+                  <mat-option value="bar">Bar</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
           </div>
 
-          <mat-form-field appearance="outline" class="full">
-            <mat-label>Informações adicionais</mat-label>
-            <textarea matInput rows="3" formControlName="notes" placeholder="Precisa de atendimento especializado ou alguma outra particularidade?"></textarea>
-          </mat-form-field>
+          <div class="field-block full">
+            <div class="field-title">Informações adicionais</div>
+            <mat-form-field appearance="fill" class="field textarea">
+              <textarea matInput rows="3" formControlName="notes" placeholder="Precisa de atendimento especializado ou alguma outra particularidade?"></textarea>
+            </mat-form-field>
+          </div>
 
           <div class="actions">
             <button mat-raised-button color="primary" (click)="continuar()" [disabled]="form.invalid">Continuar</button>
@@ -85,13 +101,19 @@ import { Unit } from '../../core/models/unit.model';
     `.unit-title{ margin:10px 0 2px; color:#0A4697; font-weight:700; font-size:22px; }`,
     `.unit-address{ color:#7d8a97; font-size:12px; }`,
     `.form-wrap{ max-width:720px; margin:12px auto 0; }`,
-    `.grid-2{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; }`,
-    `.full{ width:100%; margin-top:6px; }`,
+    `.grid-2{ display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px 28px; }`,
+    `.full{ width:100%; margin-top:8px; }`,
     `.actions{ display:flex; justify-content:center; margin-top:6px; }`,
+    `.field-block{ text-align:left; }`,
+    `.field-title{ color:#155BB5; font-weight:700; margin-bottom:6px; }`,
+    `.field{ width:100%; }`,
     `.compact .mat-mdc-form-field-infix{ padding:6px 0 2px !important; min-height:36px; }`,
-    `.compact .mat-mdc-text-field-wrapper{ height:40px; }`,
+    `.compact .mat-mdc-text-field-wrapper{ height:40px; background:transparent !important; }`,
     `.compact .mat-mdc-form-field-subscript-wrapper{ height:0; }`,
     `.compact .mdc-notched-outline__notch{ padding:0 6px; }`,
+    `.compact .mdc-line-ripple{ --mdc-filled-text-field-active-indicator-color: #B0BEC5; }`,
+    `.compact .mat-mdc-form-field-icon-prefix{ color:#5F7EB3; margin-right:6px; }`,
+    `.textarea .mat-mdc-text-field-wrapper{ height:auto; }`,
     `.compact button.mat-mdc-raised-button{ min-height:36px; padding:0 16px; }`,
   ]
 })
@@ -132,3 +154,4 @@ export class ReservaStepComponent implements OnInit {
     this.router.navigate(['/unidade', id, 'reserva', 'confirmar']);
   }
 }
+
