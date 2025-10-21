@@ -31,7 +31,7 @@ import { MatButtonModule } from '@angular/material/button';
   styles: [
     `.cover-wrap{ position:relative; width:100vw; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; }`,
     `.cover-img{ width:100%; height:360px; object-fit:cover; display:block; }`,
-    `.brand-overlay{ position:absolute; left:50%; transform:translateX(-50%); bottom:-48px; height:200px; width:auto; box-shadow:0 4px 10px rgba(0,0,0,.25); border-radius:4px; }`,
+    `.brand-overlay{ position:absolute; left:50%; transform:translateX(-50%); bottom:-48px; height:200px; width:auto; border-radius:4px; }`,
     `.center-block{ text-align:center; margin-top:68px; }`,
     `.unit-title{ margin:16px 0 4px; color:#0A4697; font-weight:700; }`,
     `.unit-address{ color:#7d8a97; }`,
