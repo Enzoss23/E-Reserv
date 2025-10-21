@@ -69,12 +69,12 @@ import { Unit } from '../../core/models/unit.model';
               <div class="field-title">Ambiente</div>
               <mat-form-field appearance="fill" class="field">
                 <mat-icon matPrefix>cottage</mat-icon>
-                <mat-select formControlName="area">
-                  <mat-option value="salao">Salão</mat-option>
-                  <mat-option value="lounge">Lounge bar</mat-option>
-                  <mat-option value="externa">Área externa</mat-option>
-                  <mat-option value="bar">Bar</mat-option>
-                </mat-select>
+                <select matNativeControl formControlName="area">
+                  <option value="salao">Salão</option>
+                  <option value="lounge">Lounge bar</option>
+                  <option value="externa">Área externa</option>
+                  <option value="bar">Bar</option>
+                </select>
               </mat-form-field>
             </div>
           </div>
@@ -154,4 +154,3 @@ export class ReservaStepComponent implements OnInit {
     this.router.navigate(['/unidade', id, 'reserva', 'confirmar']);
   }
 }
-
