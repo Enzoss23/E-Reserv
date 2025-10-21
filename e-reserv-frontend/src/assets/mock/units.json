@@ -1,0 +1,24 @@
+[
+  {
+    "id": "barra-da-tijuca",
+    "name": "Corrientes 348 - Barra da Tijuca",
+    "address": "Av. das Américas, 7777 - Barra da Tijuca, Rio de Janeiro - RJ, 22793-081",
+    "city": "Rio de Janeiro",
+    "state": "RJ"
+  },
+  {
+    "id": "jardim-europa",
+    "name": "Corrientes 348 - Jardim Europa",
+    "address": "R. Dr. Mário Ferraz, 32 - Jardim Europa, São Paulo - SP, 01453-010",
+    "city": "São Paulo",
+    "state": "SP"
+  },
+  {
+    "id": "jardins",
+    "name": "Corrientes 348 - Jardins",
+    "address": "R. Bela Cintra, 2305 - Consolação, São Paulo - SP, 01415-002",
+    "city": "São Paulo",
+    "state": "SP"
+  }
+]
+

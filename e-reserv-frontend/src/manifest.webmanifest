@@ -1,0 +1,11 @@
+{
+  "name": "E-Reserv",
+  "short_name": "Reserv",
+  "theme_color": "#1a4ea1",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "icons": []
+}
+

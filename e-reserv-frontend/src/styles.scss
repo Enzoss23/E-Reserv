@@ -1,0 +1,58 @@
+@use '@angular/material' as mat;
+
+/* Brand palette */
+:root {
+  --brand-blue: #0A4697;
+  --brand-blue-strong: #0f438f;
+  --brand-blue-light: #2a61c8;
+  --brand-gray-700: #616a73;
+  --page-bg: #FFFFFF;
+}
+
+/* Angular Material theme tuned to brand */
+$primary: mat.define-palette(mat.$indigo-palette, 800, 400, 900);
+$accent: mat.define-palette(mat.$light-blue-palette, 400);
+$warn: mat.define-palette(mat.$red-palette);
+
+$theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $primary,
+      accent: $accent,
+      warn: $warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+
+@include mat.all-component-themes($theme);
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Roboto, Arial, sans-serif;
+  background: var(--page-bg);
+}
+
+.container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e5e9f2;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+}
+
+.spacer { flex: 1 1 auto; }
+
+/* Toolbar brand color override */
+.mat-toolbar.mat-primary,
+.mat-mdc-toolbar.mat-primary {
+  background-color: #0A4697 !important;
+  color: #fff;
+}
