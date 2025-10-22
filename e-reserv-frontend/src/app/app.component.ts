@@ -13,7 +13,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
       <span class="spacer"></span>
     </mat-toolbar>
     <router-outlet></router-outlet>
-    <footer style="text-align:center; padding:16px; color:#7d8a97; font-size:14px;">
+    <footer style="text-align:center; padding:16px; color:#7d8a97; font-size:14px; " *ngIf="showPublicToolbar()">
      Desenvolvido por E-Reserv &copy;
     </footer>
   `
