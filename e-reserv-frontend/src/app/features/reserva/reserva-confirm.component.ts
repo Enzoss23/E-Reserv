@@ -66,7 +66,7 @@ import { Unit } from '../../core/models/unit.model';
     </div>
   `,
   styles: [
-    `.cover-wrap{ position:relative; width:100vw; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; }`,
+    `.cover-wrap{ position:relative; width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw); }`,
     `.cover-img{ width:100%; height:360px; object-fit:cover; display:block; }`,
     `.brand-overlay{ position:absolute; left:50%; transform:translateX(-50%); bottom:-48px; height:161px; width:auto; border-radius:4px; }`,
     `.center-block{ text-align:center; margin-top:52px; }`,
@@ -116,4 +116,3 @@ export class ReservaConfirmComponent implements OnInit {
     this.router.navigateByUrl('/');
   }
 }
-
