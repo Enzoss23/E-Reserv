@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MAT_DATE_LOCALE, DateAdapter } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReservationService } from '../../core/services/reservation.service';
@@ -16,6 +16,7 @@ import { Unit } from '../../core/models/unit.model';
 @Component({
   standalone: true,
   selector: 'app-reserva-step',
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'pt-BR' }],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -44,7 +45,7 @@ import { Unit } from '../../core/models/unit.model';
               <div class="field-title">Data da reserva</div>
               <mat-form-field appearance="fill" class="field">
                 <mat-icon matPrefix>event</mat-icon>
-                <input matInput [matDatepicker]="picker" formControlName="date" />
+                <input matInput [matDatepicker]="picker" placeholder="dd/mm/aaaa" formControlName="date" />
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
             </div>
@@ -95,8 +96,8 @@ import { Unit } from '../../core/models/unit.model';
   `,
   styles: [
     `.cover-wrap{ position:relative; width:100vw; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; }`,
-    `.cover-img{ width:100%; height:220px; object-fit:cover; display:block; }`,
-    `.brand-overlay{ position:absolute; left:50%; transform:translateX(-50%); bottom:-36px; height:90px; width:auto; box-shadow:0 4px 10px rgba(0,0,0,.2); border-radius:4px; }`,
+    `.cover-img{ width:100%; height:360px; object-fit:cover; display:block; }`,
+    `.brand-overlay{ position:absolute; left:50%; transform:translateX(-50%); bottom:-48px; height:161px; width:auto; border-radius:4px; }`,
     `.center-block{ text-align:center; margin-top:52px; }`,
     `.unit-title{ margin:10px 0 2px; color:#0A4697; font-weight:700; font-size:22px; }`,
     `.unit-address{ color:#7d8a97; font-size:12px; }`,
@@ -127,9 +128,10 @@ export class ReservaStepComponent implements OnInit {
     notes: ['']
   });
 
-  constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private reservation: ReservationService, private http: HttpClient) {}
+  constructor(private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private reservation: ReservationService, private http: HttpClient, private dateAdapter: DateAdapter<Date>) {}
 
   ngOnInit(): void {
+    this.dateAdapter.setLocale('pt-BR');
     const id = this.route.snapshot.paramMap.get('id');
     this.http.get<Unit[]>('/assets/mock/units.json').subscribe(list => {
       this.unit.set(list.find(u => u.id === id) || null);

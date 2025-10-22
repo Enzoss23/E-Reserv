@@ -8,7 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
   imports: [RouterOutlet, MatToolbarModule],
   template: `
     <mat-toolbar color="primary">
-      <img src="assets/image 8.png" alt="Logo" height="50" style="margin-right:12px" />
+      <img src="assets/image 8.png" alt="Logo" height="57px" style="margin-right:12px" />
       <span class="spacer"></span>
     </mat-toolbar>
     <router-outlet></router-outlet>
