@@ -280,18 +280,39 @@ type DayStats = {
     .lock{ width:22px; height:22px; pointer-events:none; }
     .lock mat-icon{ font-size:18px; width:18px; height:18px; color:#9e9e9e; }
 
-    .stacks{ display:flex; flex-direction:column; gap:4px; }
-    .stack{
-      display:flex; align-items:center; justify-content:flex-start;
-      height:16px; border-radius:3px; box-shadow:0 1px 0 rgba(0,0,0,.04) inset;
-      color:#fff; font-weight:700; letter-spacing:.2px;
-      padding:0 6px; width:64px;
-    }
+    /* ===== Ajuste: pílulas à direita e 36x14 ===== */
+.stacks{
+  position: absolute;        /* fixa dentro da célula */
+  right: 6px;                /* encosta na lateral direita */
+  top: 50%;                  /* centraliza verticalmente */
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;     /* alinha as barrinhas à direita */
+  gap: 4px;
+}
 
-    .stack-blue{ background:var(--blue); }
-    .stack-green{ background:var(--green); }
-    .stack-red{ background:var(--red); }
-    .stack-gray{ background:var(--gray); }
+/* pílulas com tamanho fixo */
+.stack{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 14px;
+  border-radius: 3px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 10px;
+  line-height: 14px;         /* centraliza o número */
+  box-shadow: 0 1px 0 rgba(0,0,0,.04) inset;
+}
+
+/* cores */
+.stack-blue{ background: var(--blue); }
+.stack-green{ background: var(--green); }
+.stack-red{ background: var(--red); }
+.stack-gray{ background: var(--gray); }
+
 
     .val{ font-size:10px; line-height:1; }
 

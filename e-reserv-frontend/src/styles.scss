@@ -1,6 +1,8 @@
 @use '@angular/material' as mat;
 
-/* Brand palette */
+/* ===========================================================
+   PALETA DE CORES / BRAND
+   =========================================================== */
 :root {
   --brand-blue: #0A4697;
   --brand-blue-strong: #0f438f;
@@ -9,7 +11,9 @@
   --page-bg: #FFFFFF;
 }
 
-/* Angular Material theme tuned to brand */
+/* ===========================================================
+   THEME ANGULAR MATERIAL (baseado na paleta da marca)
+   =========================================================== */
 $primary: mat.define-palette(mat.$indigo-palette, 800, 400, 900);
 $accent: mat.define-palette(mat.$light-blue-palette, 400);
 $warn: mat.define-palette(mat.$red-palette);
@@ -28,13 +32,27 @@ $theme: mat.define-light-theme(
 
 @include mat.all-component-themes($theme);
 
-html, body { height: 100%; }
+/* ===========================================================
+   BASE GLOBAL
+   =========================================================== */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow-y: auto;   /* ✅ só o body rola */
+  overflow-x: hidden; /* evita barra lateral horizontal */
+}
+
 body {
   margin: 0;
   font-family: Roboto, Arial, sans-serif;
   background: var(--page-bg);
+  color: #263238;
 }
 
+/* ===========================================================
+   CONTAINERS E ELEMENTOS BASE
+   =========================================================== */
 .container {
   max-width: 100%;
   margin: 0 auto;
@@ -45,14 +63,75 @@ body {
   background: #fff;
   border-radius: 8px;
   border: 1px solid #e5e9f2;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
-.spacer { flex: 1 1 auto; }
+.spacer {
+  flex: 1 1 auto;
+}
 
-/* Toolbar brand color override */
+/* ===========================================================
+   TOOLBAR / TOPBAR
+   =========================================================== */
 .mat-toolbar.mat-primary,
 .mat-mdc-toolbar.mat-primary {
   background-color: #0A4697 !important;
   color: #fff;
+}
+
+/* ===========================================================
+   CORREÇÃO DE SCROLL DUPLO NO ANGULAR MATERIAL
+   =========================================================== */
+
+/* 🔹 Garante que o sidenav-container não crie rolagem interna */
+mat-sidenav-container,
+.mat-sidenav-container {
+  height: auto !important;
+  min-height: 100vh !important;
+  overflow: visible !important;
+  position: relative !important;
+}
+
+/* 🔹 O conteúdo principal também não cria rolagem própria */
+mat-sidenav-content,
+.mat-sidenav-content {
+  overflow: visible !important;
+}
+
+/* 🔹 Mantém o conteúdo ocupando a área visível (com toolbar) */
+.content {
+  min-height: calc(100vh - 64px);
+  overflow: visible;
+}
+
+/* ===========================================================
+   AJUSTES VISUAIS EXTRAS
+   =========================================================== */
+
+/* Remove rolagem duplicada no container de layout */
+.layout,
+.with-topbar {
+  height: auto !important;
+  min-height: calc(100vh - 64px);
+}
+
+/* Corrige possíveis barras horizontais */
+.mat-drawer-content {
+  overflow-x: hidden !important;
+}
+
+/* Scrollbar sutil (opcional, visual mais limpo) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #c2c8d0;
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #a6acb3;
+}
+::-webkit-scrollbar-track {
+  background: #f3f5f7;
 }
