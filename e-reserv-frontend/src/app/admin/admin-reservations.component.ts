@@ -64,7 +64,7 @@ import { MatTableModule } from '@angular/material/table';
     `.filters .title{ font-weight:600; margin-bottom:8px; }`,
     `.filters .grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; }`,
     `.table-card{ background:#fff; border:1px solid #e5e9f2; box-shadow:0 2px 4px rgba(0,0,0,.06); border-radius:6px; padding:8px 12px 12px; margin-top:14px; }`,
-    `.table-card .title{ font-weight:600; margin:8px 4px 8px; }`,
+    `.table-card .title{ font-weight:600; margin-bottom:8px; }`,
     `.full{ width:100%; }`
   ]
 })
