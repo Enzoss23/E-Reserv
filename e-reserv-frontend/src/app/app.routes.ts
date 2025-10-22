@@ -6,6 +6,25 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./features/home/home.component').then((m) => m.HomeComponent),
   },
+  // Admin / Gestão
+  {
+    path: 'gestao/login',
+    loadComponent: () => import('./admin/admin-login.component').then(m => m.AdminLoginComponent)
+  },
+  {
+    path: 'gestao',
+    loadComponent: () => import('./admin/admin-shell.component').then(m => m.AdminShellComponent),
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./admin/admin-dashboard.component').then(m => m.AdminDashboardComponent)
+      },
+      {
+        path: 'reservas',
+        loadComponent: () => import('./admin/admin-reservations.component').then(m => m.AdminReservationsComponent)
+      },
+    ]
+  },
   {
     path: 'unidade/:id',
     loadComponent: () =>
