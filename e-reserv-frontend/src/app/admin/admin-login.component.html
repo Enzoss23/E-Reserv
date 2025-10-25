@@ -1,0 +1,29 @@
+    <div class="login-wrap">
+      <div class="login-card">
+        <div class="brand-pane">
+          <img src="/assets/image 8.png" alt="Logo" />
+        </div>
+        <div class="form-pane">
+          <div class="title">Painel de Gestão</div>
+          <div class="subtitle">Informe seus dados para prosseguir</div>
+          <form [formGroup]="form" (ngSubmit)="go()" class="form">
+            <div class="field-title">Usuário</div>
+            <mat-form-field appearance="fill" class="full">
+              <mat-icon matPrefix>person</mat-icon>
+              <input matInput formControlName="user" />
+            </mat-form-field>
+
+            <div class="field-title">Senha</div>
+            <mat-form-field appearance="fill" class="full">
+              <mat-icon matPrefix>vpn_key</mat-icon>
+              <input matInput type="password" formControlName="pass" />
+            </mat-form-field>
+
+            <a class="link" href="#">Esqueci a senha</a>
+
+            <button mat-raised-button color="primary" class="submit" [disabled]="form.invalid">Acessar</button>
+          </form>
+        </div>
+      </div>
+      <footer class="foot">Desenvolvido por E-reserv ©</footer>
+    </div>

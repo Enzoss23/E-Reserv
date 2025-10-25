@@ -1,0 +1,64 @@
+<div class="unit-page">
+      <div class="cover-wrap">
+        <img src="/assets/Mask group.png" alt="Foto do estabelecimento" class="cover-img" />
+        <img src="/assets/image 8.png" alt="Marca" class="brand-overlay" />
+      </div>
+
+      <div class="container center-block compact">
+        <h2 class="unit-title">{{ unit()?.name }}</h2>
+        <div class="unit-address">{{ unit()?.address }}</div>
+
+        <form [formGroup]="form" class="form-wrap compact">
+          <div class="grid-2">
+            <div class="field-block">
+              <div class="field-title">Data da reserva</div>
+              <mat-form-field appearance="fill" class="field">
+                <mat-icon matPrefix>event</mat-icon>
+                <input matInput [matDatepicker]="picker" placeholder="dd/mm/aaaa" formControlName="date" />
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+
+            <div class="field-block">
+              <div class="field-title">Horário</div>
+              <mat-form-field appearance="fill" class="field">
+                <mat-icon matPrefix>schedule</mat-icon>
+                <input matInput placeholder="12:00h" formControlName="time" />
+              </mat-form-field>
+            </div>
+
+            <div class="field-block">
+              <div class="field-title">Quantidade de pessoas</div>
+              <mat-form-field appearance="fill" class="field">
+                <mat-icon matPrefix>group</mat-icon>
+                <input matInput type="number" min="1" formControlName="people" />
+              </mat-form-field>
+            </div>
+
+            <div class="field-block">
+              <div class="field-title">Ambiente</div>
+              <mat-form-field appearance="fill" class="field">
+                <mat-icon matPrefix>cottage</mat-icon>
+                <select matNativeControl formControlName="area">
+                  <option value="salao">Salão</option>
+                  <option value="lounge">Lounge bar</option>
+                  <option value="externa">Área externa</option>
+                  <option value="bar">Bar</option>
+                </select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="field-block full">
+            <div class="field-title">Informações adicionais</div>
+            <mat-form-field appearance="fill" class="field textarea">
+              <textarea matInput rows="3" formControlName="notes" placeholder="Precisa de atendimento especializado ou alguma outra particularidade?"></textarea>
+            </mat-form-field>
+          </div>
+
+          <div class="actions">
+            <button mat-raised-button color="primary" (click)="continuar()" [disabled]="form.invalid">Continuar</button>
+          </div>
+        </form>
+      </div>
+    </div>

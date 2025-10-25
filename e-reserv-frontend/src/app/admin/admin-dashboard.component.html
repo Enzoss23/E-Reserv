@@ -1,0 +1,119 @@
+    <div class="metrics">
+      <mat-card class="metric">
+        <div class="metric-left">
+          <div class="metric-title">Reservas confirmadas</div>
+        </div>
+        <div class="metric-num">45</div>
+      </mat-card>
+
+      <mat-card class="metric">
+        <div class="metric-left">
+          <div class="metric-title">Reservas canceladas</div>
+        </div>
+        <div class="metric-num warn">3</div>
+      </mat-card>
+
+      <mat-card class="metric">
+        <div class="metric-left">
+          <div class="metric-title">Taxa de ocupação atual</div>
+        </div>
+        <div class="metric-num">30%</div>
+      </mat-card>
+
+      <mat-card class="metric orange">
+        <div class="metric-left">
+          <div class="metric-title">Fila de espera</div>
+          <div class="metric-sub">Clientes aguardando</div>
+        </div>
+        <div class="metric-num">12</div>
+      </mat-card>
+
+      <mat-card class="metric orange">
+        <div class="metric-left">
+          <div class="metric-title">Reservas pendentes</div>
+        </div>
+        <div class="metric-num">15</div>
+      </mat-card>
+
+      <mat-card class="metric">
+        <div class="metric-left">
+          <div class="metric-title">Mesas disponíveis</div>
+        </div>
+        <div class="metric-num">70</div>
+      </mat-card>
+
+      <mat-card class="metric">
+        <div class="metric-left">
+          <div class="metric-title">Mesas ocupadas</div>
+        </div>
+        <div class="metric-num">30</div>
+      </mat-card>
+
+      <mat-card class="metric">
+        <div class="metric-left">
+          <div class="metric-title">No-shows recentes</div>
+          <div class="metric-sub">Clientes faltantes</div>
+        </div>
+        <div class="metric-num warn">2</div>
+      </mat-card>
+    </div>
+
+    <!-- CALENDÁRIO -->
+    <div class="section">
+      <div class="section-title">Agenda mensal</div>
+
+      <mat-card class="calendar">
+        <div class="cal-toolbar">
+          <div class="cal-title">{{ monthLabel() }}</div>
+
+          <div class="cal-legend">
+            <span class="legend"><span class="dot dot-blue"></span> Mesas reservadas</span>
+            <span class="legend"><span class="dot dot-green"></span> Mesas disponíveis</span>
+            <span class="legend"><span class="dot dot-red"></span> Cancelamentos</span>
+            <span class="legend"><span class="dot dot-gray"></span> No-shows</span>
+          </div>
+
+          <div class="cal-nav">
+            <button mat-icon-button (click)="prevMonth()" matTooltip="Mês anterior">
+              <mat-icon>arrow_back</mat-icon>
+            </button>
+            <button mat-icon-button (click)="nextMonth()" matTooltip="Próximo mês">
+              <mat-icon>arrow_forward</mat-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="weekdays">
+          <div *ngFor="let w of weekDays">{{ w }}</div>
+        </div>
+
+        <div class="cal-grid">
+          <div
+            class="cell"
+            *ngFor="let d of monthGrid()"
+            [class.empty]="!d.day"
+            [class.unavailable]="d.unavailable"
+          >
+            <div class="cell-head">
+              <span class="day">{{ d.day || '' }}</span>
+              <button
+                *ngIf="d.unavailable"
+                mat-icon-button
+                class="lock"
+                matTooltip="Data indisponível"
+                tabindex="-1"
+              >
+                <mat-icon>lock</mat-icon>
+              </button>
+            </div>
+
+            <div *ngIf="d.day && !d.unavailable" class="stacks">
+              <div class="stack stack-blue"><span class="val">{{ d.reserved }}</span></div>
+              <div class="stack stack-green"><span class="val">{{ d.available }}</span></div>
+              <div class="stack stack-red"><span class="val">{{ d.cancels }}</span></div>
+              <div class="stack stack-gray"><span class="val">{{ d.noshows }}</span></div>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>

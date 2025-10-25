@@ -57,6 +57,9 @@
       }
     }
   },
-  "defaultProject": "e-reserv-frontend"
+  "defaultProject": "e-reserv-frontend",
+  "cli": {
+    "analytics": false
+  }
 }
 

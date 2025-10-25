@@ -1,0 +1,15 @@
+.logo{ min-height:48px; }
+.layout{ height:calc(100vh - 0px); }
+.with-topbar{ height:calc(100vh - 64px); }
+.nav{ width:240px; border-right:1px solid #e5e9f2; }
+.brand{ display:flex; align-items:center; justify-content:center; padding:11px 0; }
+.brand img{ height:42px; }
+a.mat-list-item .mat-icon, a.mat-mdc-list-item .mat-icon{ margin-right:12px; }
+a.active{ background:#eef4ff; }
+.topbar{ position:sticky; top:0; z-index:1000; }
+.topbar .logo{ height:28px; margin-right:12px; }
+.topbar .title{ font-weight:600; font-size:16px; }
+.user .mat-icon{ margin-left:4px; }
+.content{ padding:16px; }
+.foot{ text-align:center; color:#8a97a5; font-size:13px; padding:16px 0; }
+.spacer{ flex:1 1 auto; }

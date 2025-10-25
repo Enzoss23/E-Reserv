@@ -1,0 +1,35 @@
+<div class="container">
+      <div class="hero">
+        <img class="brand-mark" src="assets/image 4.png" alt="Marca do restaurante" />
+        <h1 class="title">CORRIENTES TRÊS QUATRO OCHO</h1>
+        <p class="text">Faça sua reserva e venha experimentar carne de respeito, com cortes altos e suculentos, feitos com técnica e sentimento.</p>
+      </div>
+
+      <div class="search-bar">
+        <mat-form-field appearance="outline" class="search-input">
+          <mat-label>Pesquise por cidade ou unidade</mat-label>
+          <input matInput [(ngModel)]="query" (keyup.enter)="buscar()" placeholder="Ex.: Jardins" />
+        </mat-form-field>
+        <button mat-flat-button color="primary" class="search-btn" (click)="buscar()">
+          <mat-icon>search</mat-icon>
+        </button>
+      </div>
+
+      <div class="grid">
+        <div
+          class="unit-card"
+          *ngFor="let u of filtered()"
+          (click)="openUnit(u)"
+          role="button"
+          tabindex="0"
+        >
+          <div class="logo-side">
+            <img src="assets/image 8.png" alt="logo" />
+          </div>
+          <div class="info-side">
+            <div class="unit-name">{{ u.name }}</div>
+            <div class="unit-address">{{ u.address }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
