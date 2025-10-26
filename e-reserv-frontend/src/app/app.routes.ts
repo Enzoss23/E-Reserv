@@ -23,6 +23,10 @@ export const routes: Routes = [
         path: 'reservas',
         loadComponent: () => import('./admin/admin-reservations.component').then(m => m.AdminReservationsComponent)
       },
+      {
+        path: 'fila',
+        loadComponent: () => import('./admin/admin-waitlist.component').then(m => m.AdminWaitlistComponent)
+      },
     ]
   },
   {
@@ -42,4 +46,3 @@ export const routes: Routes = [
   },
   { path: '**', redirectTo: '' },
 ];
-

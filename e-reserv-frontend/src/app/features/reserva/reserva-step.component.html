@@ -35,19 +35,30 @@
               </mat-form-field>
             </div>
 
-            <div class="field-block">
+            <div class="field-block" mat-form-field appearance="outline" class="w160">
               <div class="field-title">Ambiente</div>
               <mat-form-field appearance="fill" class="field">
                 <mat-icon matPrefix>cottage</mat-icon>
-                <select matNativeControl formControlName="area">
-                  <option value="salao">Salão</option>
-                  <option value="lounge">Lounge bar</option>
-                  <option value="externa">Área externa</option>
-                  <option value="bar">Bar</option>
-                </select>
+                <mat-select matNativeControl formControlName="area">
+                  <mat-option value="salao">Salão</mat-option>
+                  <mat-option value="lounge">Lounge bar</mat-option>
+                  <mat-option value="externa">Área externa</mat-option>
+                  <mat-option value="bar">Bar</mat-option>
+                </mat-select>
               </mat-form-field>
             </div>
           </div>
+
+
+
+        <!-- <mat-form-field appearance="outline" class="w160">
+          <mat-label>Categoria</mat-label>
+          <mat-select>
+            <mat-option value="">Todas</mat-option>
+            <mat-option value="priority">Prioritários</mat-option>
+            <mat-option value="family">Famílias</mat-option>
+            <mat-option value="special">Necessidades especiais</mat-option>
+          </mat-select>          -->
 
           <div class="field-block full">
             <div class="field-title">Informações adicionais</div>

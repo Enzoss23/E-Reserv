@@ -1,0 +1,95 @@
+<div class="metrics">
+  <div class="metric"><div class="label">Na fila agora<span class="sub">Clientes aguardando</span></div><div class="num">{{ inQueue }}</div></div>
+  <div class="metric"><div class="label">Tempo médio<span class="sub">Tempo de espera</span></div><div class="num">{{ avgTime }}min</div></div>
+  <div class="metric"><div class="label">Atendidos hoje<span class="sub">Da fila de espera</span></div><div class="num">{{ servedToday }}</div></div>
+  <div class="metric"><div class="label">Taxa de desistência<span class="sub">Desistiram hoje</span></div><div class="num">{{ dropoutRate }}%</div></div>
+</div>
+
+<div class="grid-layout">
+  <div class="left">
+    <div class="card header">
+      <div class="title-row">
+        <div class="title">Fila de espera</div>
+        <div class="updated">Atualizado agora</div>
+      </div>
+      <div class="filters">
+        <mat-form-field appearance="outline" class="grow">
+          <mat-label>Buscar cliente na fila...</mat-label>
+          <input matInput />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w160">
+          <mat-label>Categoria</mat-label>
+          <mat-select>
+            <mat-option value="">Todas</mat-option>
+            <mat-option value="priority">Prioritários</mat-option>
+            <mat-option value="family">Famílias</mat-option>
+            <mat-option value="special">Necessidades especiais</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w160">
+          <mat-label>Ordenar</mat-label>
+          <mat-select>
+            <mat-option value="wait_desc">Espera (maior)</mat-option>
+            <mat-option value="wait_asc">Espera (menor)</mat-option>
+            <mat-option value="people_desc">Pessoas (maior)</mat-option>
+            <mat-option value="people_asc">Pessoas (menor)</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="tip"><mat-icon>info</mat-icon><div>
+        <div class="tip-title">Dica</div>
+        <div>Clique em “Chamar” para notificar que a mesa está pronta. O sistema enviará SMS/Notificação automaticamente.</div>
+      </div></div>
+    </div>
+
+    <div class="list">
+      <div class="wait-card" *ngFor="let item of list(); let i = index" [class.priority]="item.priority">
+        <div class="pos">{{ i+1 }}</div>
+        <div class="main">
+          <div class="name">{{ item.name }}</div>
+          <div class="row small">
+            <div class="chip"><mat-icon>groups</mat-icon>{{ item.people }} pessoas</div>
+            <div class="chip"><mat-icon>phone</mat-icon>{{ item.phone }}</div>
+            <div class="chip" *ngIf="item.notes"><mat-icon>info</mat-icon>{{ item.notes }}</div>
+          </div>
+        </div>
+        <div class="right">
+          <div class="badge">Esperando <b>{{ item.waitingMin }}min</b></div>
+          <div class="actions">
+            <button mat-icon-button color="primary" matTooltip="Chamar" (click)="call(item.id)"><mat-icon>notifications_active</mat-icon></button>
+            <button mat-icon-button color="primary" matTooltip="Check‑in" (click)="checkIn(item.id)"><mat-icon>task_alt</mat-icon></button>
+            <button mat-icon-button matTooltip="Remover" (click)="remove(item.id)"><mat-icon>close</mat-icon></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-col">
+    <div class="card side">
+      <div class="side-title"><mat-icon>bolt</mat-icon>Ações Rápidas</div>
+      <button mat-stroked-button color="primary" class="side-btn"><mat-icon>person_search</mat-icon>Chamar próximo</button>
+      <button mat-stroked-button class="side-btn"><mat-icon>priority_high</mat-icon>Ver prioritários</button>
+      <button mat-stroked-button class="side-btn"><mat-icon>history</mat-icon>Histórico do dia</button>
+      <button mat-stroked-button class="side-btn"><mat-icon>file_download</mat-icon>Exportar relatório</button>
+    </div>
+
+    <div class="card side">
+      <div class="side-title"><mat-icon>info</mat-icon>Status atual</div>
+      <div class="kv"><span>Mesas Disponíveis</span><b>8</b></div>
+      <div class="kv"><span>Mesas Ocupadas</span><b>42</b></div>
+      <div class="kv"><span>Tempo Estimado</span><b>15‑20 min</b></div>
+      <div class="kv danger"><span>Maior Espera</span><b>35 min</b></div>
+    </div>
+
+    <div class="card side">
+      <div class="side-title"><mat-icon>query_stats</mat-icon>Estatísticas de Hoje</div>
+      <div class="kv"><span>Total Atendidos</span><b>47</b></div>
+      <div class="kv"><span>Desistências</span><b>4</b></div>
+      <div class="kv"><span>Tempo Médio</span><b>18 min</b></div>
+      <div class="kv"><span>Pico de Espera</span><b>15 pessoas</b></div>
+    </div>
+  </div>
+</div>
