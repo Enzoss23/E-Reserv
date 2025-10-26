@@ -6,7 +6,7 @@
       <div class="metric">No-shows recentes<div class="num red">—</div></div>
       <div class="metric actions">
         <button mat-stroked-button color="primary">Check-in</button>
-        <button mat-raised-button color="primary">Nova reserva</button>
+        <button mat-raised-button color="primary" (click)="openNew()">Nova reserva</button>
       </div>
     </div>
 
@@ -40,3 +40,6 @@
         <tr mat-row *matRowDef="let row; columns: cols;"></tr>
       </table>
     </div>
+
+    <!-- Modal de Nova Reserva (componente separado) -->
+    <app-admin-new-reservation-dialog *ngIf="isNewOpen" (close)="closeNew()" (confirm)="onConfirmNew($event)"></app-admin-new-reservation-dialog>
