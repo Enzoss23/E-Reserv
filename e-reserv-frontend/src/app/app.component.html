@@ -1,0 +1,8 @@
+    <mat-toolbar color="primary" *ngIf="showPublicToolbar()">
+      <img src="assets/image 8.png" alt="Logo"  />
+      <span class="spacer"></span>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+    <footer  *ngIf="showPublicToolbar()">
+     Desenvolvido por E-Reserv &copy;
+    </footer>
