@@ -5,7 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
-import { AdminNewReservationDialogComponent } from './admin-new-reservation-dialog.component';
+import { AdminNewReservationDialogComponent } from './component/admin-new-reservation-dialog.component';
 
 @Component({
   standalone: true,
