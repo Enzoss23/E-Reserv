@@ -1,50 +1,87 @@
-:root { --primary:#0A4697; --border:#e5e9f2; --header:#eef2f7; }
+:root{
+  --primary:#0A4697;
+  --border:#e9edf3;      /* borda bem suave */
+  --label:#6b7280;       /* cinza dos títulos de campo */
+  --divider:#e5e7eb;
+  --header:#f8fafc;
+}
 
 .overlay{
   position:fixed; inset:0; background:rgba(0,0,0,.35);
   display:flex; align-items:center; justify-content:center; z-index:1000;
 }
 .dialog{
-  width: 580px; height: 660px; background:#fff; border-radius:8px;
+  width: 720px; background:#fff; border-radius:8px;
   box-shadow:0 10px 30px rgba(0,0,0,.2); border:1px solid var(--border);
 }
 .dialog-header{
   position:relative; display:flex; align-items:center; justify-content:center;
-  padding:18px 20px; border-bottom:1px solid var(--header);
+  padding:18px 20px; background:var(--header);
+  border-bottom:1px solid var(--divider);
 }
-.dialog-title{ font-size:20px; font-weight:700; color:var(--primary); }
+.dialog-title{ font-size:22px; font-weight:700; color:#111827; }
 .close{
   position:absolute; right:8px; top:6px;
   border:none; background:transparent; font-size:28px; line-height:1;
-  cursor:pointer; color:(var(--primary)); padding:6px 10px;
+  cursor:pointer; color:#6b7280; padding:6px 10px;
 }
 
-.form{ padding:16px 20px 20px; }
-.grid{ display:grid; gap:12px; }
-.grid.two{ grid-template-columns:repeat(2, minmax(0,1fr)); }
-.col-2{ grid-column:1 / -1; }
-.section-title{ font-weight:600; color:var(--primary); margin:10px 0 6px; }
-.dialog-actions{ display:flex; justify-content:flex-end; gap:12px; padding-top:8px; }
+.form{ padding:16px 20px 22px; }
+.grid{ display:grid; gap:14px; }
+.grid.two{ grid-template-columns:repeat(2, minmax(0,1fr)); column-gap:16px; }
 .full{ width:100%; }
-.label-icon{ font-size:18px; margin-right:6px; vertical-align:middle; }
 
+.fld{ display:flex; flex-direction:column; }
+.fld-label{
+  font-size:12px; font-weight:600; color:var(--label);
+  margin:2px 0 6px;
+}
+
+.section-line{
+  display:flex; align-items:center; gap:8px;
+  font-weight:700; color:#111827; margin:4px 0 8px;
+}
+.section-ic{ font-size:20px; }
+
+.divider{ border-top:1px solid var(--divider); margin:12px 0 14px; }
+
+.dialog-actions{
+  display:flex; gap:18px; padding-top:10px;
+}
+.dialog-actions.center{ justify-content:center; }
+.dialog-actions button{ min-width:160px; }
+
+/* ===== Material tweaks para parecer com o mock ===== */
 mat-form-field{ width:100%; }
 
-:host ::ng-deep .mat-mdc-form-field .mdc-floating-label{
-  color:var(--primary) !important; font-weight:600;
+/* remove área de hints para reduzir altura */
+:host ::ng-deep .mat-mdc-form-field-subscript-wrapper{ display:none; }
+
+/* encolhe verticalmente */
+:host ::ng-deep .mat-mdc-form-field-infix{ padding-top:8px; padding-bottom:8px; }
+
+/* aparência "fill" com leve fundo e borda quase imperceptível */
+:host ::ng-deep .mat-mdc-form-field-appearance-fill .mat-mdc-text-field-wrapper{
+  background:#fafbfd;
+  border:1px solid var(--border);
+  border-radius:6px;
+}
+:host ::ng-deep .mat-mdc-form-field:hover .mat-mdc-text-field-wrapper{
+  border-color:#e3e7ef;
 }
 
-:host ::ng-deep .mat-mdc-form-field .mdc-notched-outline__leading,
-:host ::ng-deep .mat-mdc-form-field .mdc-notched-outline__notch,
-:host ::ng-deep .mat-mdc-form-field .mdc-notched-outline__trailing{
-  border-color: var(--border) !important;
-}
-:host ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
-:host ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
-:host ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing{
-  border-color: var(--primary) !important;
+/* foco azul primário */
+:host ::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-text-field-wrapper{
+  border-color:var(--primary) !important;
 }
 
-@media (max-width: 720px){
-  .grid.two{ grid-template-columns:1fr; }
+/* ícones de sufixo/prefixo discretos */
+:host ::ng-deep .mat-mdc-form-field-icon-suffix,
+:host ::ng-deep .mat-mdc-form-field-icon-prefix{
+  color:#6b7280;
+}
+
+/* inputs e selects com altura mais compacta */
+:host ::ng-deep .mdc-text-field--filled .mdc-text-field__input{
+  padding-top:6px; padding-bottom:6px;
 }

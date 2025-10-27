@@ -1,0 +1,90 @@
+<div class="page">
+  <div class="breadcrumbs">
+    <span class="crumb" (click)="back()">/ Reservas</span>
+    <span class="sep">/</span>
+    <span class="crumb">Detalhes da Reserva</span>
+    <span class="sep">/</span>
+    <span class="crumb strong">#{{ reservation?.id }}</span>
+  </div>
+
+  <div class="header-row">
+    <h1 class="title">Reserva #{{ reservation?.id }}</h1>
+    <div class="actions">
+      <button mat-stroked-button color="primary">Editar Reserva</button>
+      <button mat-raised-button color="warn">Excluir reserva</button>
+    </div>
+  </div>
+
+  <div class="status-banner" [class.pending]="statusClass.pending" [class.confirmed]="statusClass.confirmed" [class.cancelled]="statusClass.cancelled">
+    <mat-icon>info</mat-icon>
+    <div>
+      <div class="b-title">{{ reservation?.status === 'Pendente' ? 'Reserva Pendente de Confirmação' : 'Status da Reserva' }}</div>
+      <div *ngIf="reservation?.status === 'Pendente'">Esta reserva foi criada pelo cliente e aguarda confirmação do restaurante.</div>
+      <div *ngIf="reservation?.status === 'Confirmada'">Esta reserva foi confirmada.</div>
+      <div *ngIf="reservation?.status === 'Cancelada'">Esta reserva foi cancelada.</div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="left">
+      <div class="card">
+        <div class="card-title"><mat-icon>info</mat-icon>Informações da reserva</div>
+        <div class="info-grid">
+          <div class="kv"><span>Status</span><b class="tag" [class.orange]="statusClass.pending" [class.green]="statusClass.confirmed" [class.red]="statusClass.cancelled">{{ reservation?.status }}</b></div>
+          <div class="kv"><span>ID da Reserva</span><b>#{{ reservation?.id }}</b></div>
+          <div class="kv"><span>Data da Reserva</span><b>{{ reservation?.date }}</b></div>
+          <div class="kv"><span>Horário</span><b>{{ reservation?.time }}</b></div>
+          <div class="kv"><span>Quantidade de Pessoas</span><b>{{ reservation?.people }} {{ reservation?.people === 1 ? 'pessoa' : 'pessoas' }}</b></div>
+          <div class="kv"><span>Ambiente</span><b>{{ reservation?.area }}</b></div>
+          <div class="kv"><span>Mesa Atribuída</span><b>{{ reservation?.assignedTable }}</b></div>
+          <div class="kv"><span>Origem</span><b>{{ reservation?.origin || 'Site' }}</b></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><mat-icon>person</mat-icon>Informações do Cliente</div>
+        <div class="info-grid">
+          <div class="kv"><span>Nome Completo</span><b>{{ reservation?.name }}</b></div>
+          <div class="kv"><span>Telefone</span><b>{{ reservation?.phone || '-' }}</b></div>
+          <div class="kv"><span>E-mail</span><b>{{ reservation?.email || '-' }}</b></div>
+          <div class="kv"><span>CPF</span><b>{{ reservation?.cpf || '-' }}</b></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><mat-icon>edit</mat-icon>Observações</div>
+        <div class="notes">{{ reservation?.notes || '—' }}</div>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="card side">
+        <div class="side-title"><mat-icon>bolt</mat-icon>Ações Rápidas</div>
+        <button mat-stroked-button color="primary" class="side-btn" (click)="confirm()"><mat-icon>task_alt</mat-icon>Confirmar reserva</button>
+        <button mat-stroked-button class="side-btn" (click)="cancel()"><mat-icon>close</mat-icon>Cancelar reserva</button>
+        <button mat-stroked-button class="side-btn"><mat-icon>sms</mat-icon>Enviar SMS</button>
+        <button mat-stroked-button class="side-btn"><mat-icon>mail</mat-icon>Enviar E-mail</button>
+        <button mat-stroked-button class="side-btn"><mat-icon>print</mat-icon>Imprimir comprovante</button>
+      </div>
+
+      <div class="card side">
+        <div class="side-title"><mat-icon>history</mat-icon>Histórico</div>
+        <div class="history-item">
+          <mat-icon>event</mat-icon>
+          <div>
+            <div class="h-date">{{ reservation?.date }} às {{ reservation?.time }}</div>
+            <div><b>Sistema</b> criou a reserva via Site</div>
+          </div>
+        </div>
+        <div class="history-item">
+          <mat-icon>mail</mat-icon>
+          <div>
+            <div class="h-date">{{ reservation?.date }} às {{ reservation?.time }}</div>
+            <div>E-mail de confirmação enviado para <b>{{ reservation?.email }}</b></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

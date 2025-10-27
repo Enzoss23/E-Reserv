@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { AdminNewReservationDialogComponent } from './component/admin-new-reservation-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -15,6 +16,7 @@ import { AdminNewReservationDialogComponent } from './component/admin-new-reserv
   styleUrl: 'admin-reservations.component.css'
 })
 export class AdminReservationsComponent{
+  constructor(private router: Router) {}
   cols = ['id','cliente','horario','pessoas','ambiente','info','origem','status','acoes'];
 
   isNewOpen = false;
@@ -28,9 +30,11 @@ export class AdminReservationsComponent{
   }
 
   onConfirmNew(payload: any){
-    // Integrate with API/service here.
-    // console.log('Reserva criada:', payload);
+    // Gera um ID simples e navega para detalhes passando o estado
+    const idNum = Math.floor(Math.random() * 900) + 100; // 3 dígitos
+    const id = idNum.toString().padStart(3, '0');
+    const reservation = { id, origin: 'Site', ...payload };
     this.isNewOpen = false;
+    this.router.navigate(['/gestao/reservas', id], { state: { reservation } });
   }
 }
-

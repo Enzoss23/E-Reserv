@@ -1,89 +1,129 @@
 <div class="overlay">
-  <div class="dialog" role="dialog" aria-modal="true" aria-label="Nova reserva">
+  <div class="dialog" role="dialog" aria-modal="true" aria-label="Nova Reserva">
     <div class="dialog-header">
-      <div class="dialog-title">Nova reserva</div>
+      <div class="dialog-title">Nova Reserva</div>
       <button class="close" type="button" aria-label="Fechar" (click)="onCancel()">&times;</button>
     </div>
 
     <form (ngSubmit)="onConfirm()" class="form">
       <div class="grid two">
+
+        <!-- Status -->
+        <div class="fld">
+          <div class="fld-label">Status</div>
+          <mat-form-field appearance="fill">
+            <mat-select toggleOnClick name="status" [(ngModel)]="form.status">
+              <mat-option *ngFor="let s of statuses" [value]="s">{{ s }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <!-- Mesa atribuída -->
+        <div class="fld">
+          <div class="fld-label">Mesa Atribuída</div>
+          <mat-form-field appearance="fill">
+            <mat-select toggleOnClick name="assignedTable" [(ngModel)]="form.assignedTable">
+              <mat-option *ngFor="let m of mesas" [value]="m">{{ m }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
         <!-- Data -->
-        <mat-form-field appearance="outline">
-          <mat-label>
-            <mat-icon class="label-icon" inline>event</mat-icon>
-            Data da reserva
-          </mat-label>
-          <input matInput type="date" name="date" [(ngModel)]="form.date" required />
-          <mat-icon matSuffix>calendar_today</mat-icon>
-        </mat-form-field>
+        <div class="fld">
+          <div class="fld-label">Data da Reserva</div>
+          <mat-form-field appearance="fill">
+            <input matInput type="date" name="date" [(ngModel)]="form.date" required />
+            <mat-icon matSuffix>calendar_today</mat-icon>
+          </mat-form-field>
+        </div>
 
         <!-- Horário -->
-        <mat-form-field appearance="outline">
-          <mat-label>
-            <mat-icon class="label-icon" inline>schedule</mat-icon>
-            Horário
-          </mat-label>
-          <input matInput type="time" name="time" [(ngModel)]="form.time" required />
-          <mat-icon matSuffix>schedule</mat-icon>
-        </mat-form-field>
+        <div class="fld">
+          <div class="fld-label">Horário</div>
+          <mat-form-field appearance="fill">
+            <input matInput type="time" name="time" [(ngModel)]="form.time" required />
+            <mat-icon matSuffix>schedule</mat-icon>
+          </mat-form-field>
+        </div>
 
-        <!-- Pessoas -->
-        <mat-form-field appearance="outline">
-          <mat-label>
-            <mat-icon class="label-icon" inline>groups</mat-icon>
-            Quantidade de pessoas
-          </mat-label>
-          <input matInput type="number" min="1" name="people" [(ngModel)]="form.people" required />
-        </mat-form-field>
+        <!-- Quantidade de Pessoas -->
+        <div class="fld">
+          <div class="fld-label">Quantidade de Pessoas</div>
+          <mat-form-field appearance="fill">
+            <mat-select toggleOnClick name="people" [(ngModel)]="form.people">
+              <mat-option *ngFor="let p of peopleOptions" [value]="p">
+                {{ p }} {{ p === 1 ? 'pessoa' : 'pessoas' }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
 
         <!-- Ambiente -->
-        <mat-form-field appearance="outline">
-          <mat-label>
-            <mat-icon class="label-icon" inline>local_bar</mat-icon>
-            Ambiente
-          </mat-label>
-          <input matInput name="area" [(ngModel)]="form.area" placeholder="Lounge bar" />
-        </mat-form-field>
-
-        <!-- Nome -->
-        <mat-form-field appearance="outline">
-          <mat-label>
-            <mat-icon class="label-icon" inline>person</mat-icon>
-            Nome
-          </mat-label>
-          <input matInput name="name" [(ngModel)]="form.name" required />
-        </mat-form-field>
-
-        <!-- Telefone -->
-        <mat-form-field appearance="outline">
-          <mat-label>
-            <mat-icon class="label-icon" inline>call</mat-icon>
-            Telefone
-          </mat-label>
-          <input matInput name="phone" [(ngModel)]="form.phone" />
-        </mat-form-field>
-
-        <!-- E-mail (linha inteira) -->
-        <mat-form-field appearance="outline" class="col-2">
-          <mat-label>
-            <mat-icon class="label-icon" inline>mail</mat-icon>
-            E-mail
-          </mat-label>
-          <input matInput type="email" name="email" [(ngModel)]="form.email" />
-        </mat-form-field>
+        <div class="fld">
+          <div class="fld-label">Ambiente</div>
+          <mat-form-field appearance="fill">
+            <mat-select toggleOnClick name="area" [(ngModel)]="form.area">
+              <mat-option *ngFor="let a of ambientes" [value]="a">{{ a }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
       </div>
 
-      <div class="section-title">Informações adicionais</div>
-      <mat-form-field appearance="outline" class="full">
+      <div class="divider"></div>
+
+      <!-- Seção Cliente -->
+      <div class="section-line">
+        <mat-icon class="section-ic" inline>person</mat-icon>
+        <span>Informações do Cliente</span>
+      </div>
+
+      <div class="grid two">
+        <div class="fld">
+          <div class="fld-label">Nome Completo</div>
+          <mat-form-field appearance="fill">
+            <input matInput name="name" [(ngModel)]="form.name" required />
+          </mat-form-field>
+        </div>
+
+        <div class="fld">
+          <div class="fld-label">Telefone</div>
+          <mat-form-field appearance="fill">
+            <input matInput name="phone" [(ngModel)]="form.phone" />
+          </mat-form-field>
+        </div>
+
+        <div class="fld">
+          <div class="fld-label">E-mail</div>
+          <mat-form-field appearance="fill">
+            <input matInput type="email" name="email" [(ngModel)]="form.email" />
+          </mat-form-field>
+        </div>
+
+        <div class="fld">
+          <div class="fld-label">CPF</div>
+          <mat-form-field appearance="fill">
+            <input matInput name="cpf" [(ngModel)]="form.cpf" />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="section-line">
+        <mat-icon class="section-ic" inline>edit</mat-icon>
+        <span>Observações</span>
+      </div>
+
+      <mat-form-field appearance="fill" class="full">
         <textarea
           matInput rows="4" name="notes" [(ngModel)]="form.notes"
-          placeholder="Precisa de atendimento especializado ou alguma outra particularidade?">
+          placeholder="Cliente solicitou cadeirante para uma pessoa do grupo. Preferência por mesa próxima à janela">
         </textarea>
       </mat-form-field>
 
-      <div class="dialog-actions">
+      <div class="dialog-actions center">
+        <button mat-raised-button color="primary" type="submit">Confirmar</button>
         <button mat-raised-button color="warn" type="button" (click)="onCancel()">Cancelar</button>
-        <button mat-raised-button color="primary" type="submit">Confirmar Reserva</button>
       </div>
     </form>
   </div>

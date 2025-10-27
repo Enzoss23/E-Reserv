@@ -9,7 +9,7 @@ export const routes: Routes = [
   // Admin / Gestão
   {
     path: 'gestao/login',
-    loadComponent: () => import('./admin/admin-login.component').then(m => m.AdminLoginComponent)
+    loadComponent: () => import('./admin/login/admin-login.component').then(m => m.AdminLoginComponent)
   },
   {
     path: 'gestao',
@@ -17,15 +17,19 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        loadComponent: () => import('./admin/admin-dashboard.component').then(m => m.AdminDashboardComponent)
+        loadComponent: () => import('./admin/dashboard e calendar/admin-dashboard.component').then(m => m.AdminDashboardComponent)
       },
       {
         path: 'reservas',
         loadComponent: () => import('./admin/admin-reservations.component').then(m => m.AdminReservationsComponent)
       },
       {
+        path: 'reservas/:id',
+        loadComponent: () => import('./admin/admin-reservation-details.component').then(m => m.AdminReservationDetailsComponent)
+      },
+      {
         path: 'fila',
-        loadComponent: () => import('./admin/admin-waitlist.component').then(m => m.AdminWaitlistComponent)
+        loadComponent: () => import('./admin/fila de espera/admin-waitlist.component').then(m => m.AdminWaitlistComponent)
       },
     ]
   },

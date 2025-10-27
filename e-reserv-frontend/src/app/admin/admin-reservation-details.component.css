@@ -1,0 +1,44 @@
+.page{ display:flex; flex-direction:column; gap:12px; }
+.breadcrumbs{ color:#6b7c93; font-size:12px; display:flex; align-items:center; gap:6px; }
+.crumb{ cursor:pointer; }
+.crumb.strong{ color:#111827; font-weight:700; cursor:default; }
+.sep{ color:#a0aec0; }
+
+.header-row{ display:flex; align-items:center; justify-content:space-between; }
+.title{ font-size:22px; font-weight:800; margin:0; }
+.actions{ display:flex; gap:10px; }
+
+.status-banner{ display:flex; gap:10px; align-items:flex-start; padding:12px; border-radius:6px; border:1px solid #f0e6cc; background:#fdf6e3; color:#8a6d3b; }
+.status-banner mat-icon{ color:#8a6d3b; }
+.status-banner.confirmed{ border-color:#c8e6c9; background:#e8f5e9; color:#1b5e20; }
+.status-banner.confirmed mat-icon{ color:#1b5e20; }
+.status-banner.cancelled{ border-color:#ffcdd2; background:#ffebee; color:#c62828; }
+.status-banner.cancelled mat-icon{ color:#c62828; }
+.b-title{ font-weight:700; margin-bottom:2px; }
+
+.grid{ display:grid; grid-template-columns: 1fr 320px; gap:12px; }
+.left{ display:flex; flex-direction:column; gap:12px; }
+.right{ display:flex; flex-direction:column; gap:12px; }
+
+.card{ background:#fff; border:1px solid #e5e9f2; border-radius:8px; padding:12px; box-shadow:0 2px 4px rgba(0,0,0,.06); }
+.card-title{ font-weight:700; display:flex; align-items:center; gap:6px; margin-bottom:10px; }
+
+.info-grid{ display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:8px; }
+.kv{ display:flex; align-items:center; justify-content:space-between; padding:8px 10px; border:1px solid #eef2f7; background:#fafbfd; border-radius:6px; }
+.kv .tag{ padding:3px 8px; border-radius:999px; font-weight:700; }
+.kv .tag.orange{ background:#fff3e0; color:#ef6c00; }
+.kv .tag.green{ background:#e8f5e9; color:#2e7d32; }
+.kv .tag.red{ background:#ffebee; color:#c62828; }
+
+.notes{ border:1px solid #eef2f7; background:#fafbfd; border-radius:6px; padding:10px; min-height:60px; white-space:pre-wrap; }
+
+.side-title{ font-weight:700; display:flex; align-items:center; gap:6px; margin-bottom:6px; }
+.side-btn{ justify-content:flex-start; width:100%; gap:8px; margin:6px 0; }
+
+.history-item{ display:flex; gap:8px; align-items:flex-start; padding:8px; border:1px solid #eef2f7; border-radius:6px; background:#fafbfd; margin:6px 0; }
+.h-date{ color:#6b7c93; font-size:12px; margin-bottom:2px; }
+
+@media (max-width: 1100px){
+  .grid{ grid-template-columns:1fr; }
+}
+
