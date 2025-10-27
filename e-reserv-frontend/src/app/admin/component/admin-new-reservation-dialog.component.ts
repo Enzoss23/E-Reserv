@@ -34,10 +34,10 @@ export class ToggleOnClickDirective {
     MatButtonModule,
     MatIconModule,
     MatSelectModule,
-    ToggleOnClickDirective // <— usa a diretiva
+    ToggleOnClickDirective 
   ],
   templateUrl: './admin-new-reservation-dialog.component.html',
-  styleUrl: './admin-new-reservation-dialog.component.css' // se precisar, troque por styleUrls: [...]
+  styleUrl: './admin-new-reservation-dialog.component.css' 
 })
 export class AdminNewReservationDialogComponent {
   @Output() close = new EventEmitter<void>();
