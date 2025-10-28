@@ -1,11 +1,58 @@
 <div class="overlay">
-  <div class="dialog" role="dialog" aria-modal="true" aria-label="Nova Reserva">
+  <div class="dialog" role="dialog" aria-modal="true" [attr.aria-label]="isView ? ('Reserva #' + (data?.id || '')) : (data ? 'Editar Reserva' : 'Nova Reserva')">
     <div class="dialog-header">
-      <div class="dialog-title">Nova Reserva</div>
+      <div class="dialog-title">{{ isView ? ('Reserva #' + (data?.id || '')) : (data ? 'Editar Reserva' : 'Nova Reserva') }}</div>
       <button class="close" type="button" aria-label="Fechar" (click)="onCancel()">&times;</button>
     </div>
 
-    <form (ngSubmit)="onConfirm()" class="form">
+    <!-- View Mode -->
+    <div *ngIf="isView" class="view">
+      <div class="v-banner" [class.pending]="(data?.status||'').toLowerCase().includes('pend')" [class.confirmed]="(data?.status||'').toLowerCase().includes('confirm')" [class.cancelled]="(data?.status||'').toLowerCase().includes('cancel')">
+        <mat-icon>info</mat-icon>
+        <div>
+          <div class="v-banner-title">{{ data?.status === 'Pendente' ? 'Reserva Pendente de Confirmação' : 'Status da Reserva' }}</div>
+          <div *ngIf="data?.status === 'Pendente'">Esta reserva foi criada pelo cliente e aguarda confirmação do restaurante.</div>
+          <div *ngIf="data?.status === 'Confirmada'">Esta reserva foi confirmada.</div>
+          <div *ngIf="data?.status === 'Cancelada'">Esta reserva foi cancelada.</div>
+        </div>
+      </div>
+
+      <div class="v-card">
+        <div class="v-card-title"><mat-icon>info</mat-icon>Informações da reserva</div>
+        <div class="v-info-grid">
+          <div class="v-kv"><span>Status</span><b class="tag" [class.orange]="(data?.status||'').toLowerCase().includes('pend')" [class.green]="(data?.status||'').toLowerCase().includes('confirm')" [class.red]="(data?.status||'').toLowerCase().includes('cancel')">{{ data?.status }}</b></div>
+          <div class="v-kv"><span>ID da Reserva</span><b>#{{ data?.id }}</b></div>
+          <div class="v-kv"><span>Data da Reserva</span><b>{{ data?.date }}</b></div>
+          <div class="v-kv"><span>Horário</span><b>{{ data?.time }}</b></div>
+          <div class="v-kv"><span>Quantidade de Pessoas</span><b>{{ data?.people }} {{ data?.people === 1 ? 'pessoa' : 'pessoas' }}</b></div>
+          <div class="v-kv"><span>Ambiente</span><b>{{ data?.area }}</b></div>
+          <div class="v-kv"><span>Mesa Atribuída</span><b>{{ data?.assignedTable }}</b></div>
+          <div class="v-kv"><span>Origem</span><b>{{ data?.origin || 'Site' }}</b></div>
+        </div>
+      </div>
+
+      <div class="v-card">
+        <div class="v-card-title"><mat-icon>person</mat-icon>Informações do Cliente</div>
+        <div class="v-info-grid two">
+          <div class="v-kv"><span>Nome Completo</span><b>{{ data?.name }}</b></div>
+          <div class="v-kv"><span>Telefone</span><b>{{ data?.phone || '-' }}</b></div>
+          <div class="v-kv full"><span>E-mail</span><b>{{ data?.email || '-' }}</b></div>
+          <div class="v-kv full"><span>CPF</span><b>{{ data?.cpf || '-' }}</b></div>
+        </div>
+      </div>
+
+      <div class="v-card">
+        <div class="v-card-title"><mat-icon>edit</mat-icon>Observações</div>
+        <div class="v-notes">{{ data?.notes || '—' }}</div>
+      </div>
+
+      <div class="dialog-actions center">
+        <button mat-raised-button color="primary" type="button" (click)="onCancel()">Fechar</button>
+      </div>
+    </div>
+
+    <!-- Create/Edit Mode -->
+    <form *ngIf="!isView" (ngSubmit)="onConfirm()" class="form">
       <div class="grid two">
 
         <!-- Status -->

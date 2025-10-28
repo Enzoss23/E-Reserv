@@ -3,6 +3,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { AdminNewReservationDialogComponent } from './component/admin-new-reservation-dialog.component';
 
 type NewReservation = {
   id: string;
@@ -23,7 +24,7 @@ type NewReservation = {
 @Component({
   standalone: true,
   selector: 'app-admin-reservation-details',
-  imports: [CommonModule, RouterModule, MatIconModule, MatButtonModule, DatePipe],
+  imports: [CommonModule, RouterModule, MatIconModule, MatButtonModule, DatePipe, AdminNewReservationDialogComponent],
   templateUrl: './admin-reservation-details.component.html',
   styleUrl: './admin-reservation-details.component.css'
 })
@@ -31,12 +32,13 @@ export class AdminReservationDetailsComponent implements OnInit {
   private router = inject(Router);
 
   reservation!: NewReservation | null;
+  isEditOpen = false;
 
   ngOnInit(): void {
     const nav = this.router.getCurrentNavigation();
     const state = (nav?.extras.state as any) || history.state || {};
     this.reservation = state.reservation ?? null;
-    // if accessed directly without state, go back to list
+
     if (!this.reservation) {
       this.router.navigate(['/gestao/reservas']);
     }
@@ -55,5 +57,13 @@ export class AdminReservationDetailsComponent implements OnInit {
   confirm() { if (this.reservation) this.reservation.status = 'Confirmada'; }
   cancel() { if (this.reservation) this.reservation.status = 'Cancelada'; }
   back() { this.router.navigate(['/gestao/reservas']); }
-}
 
+  openEdit() { this.isEditOpen = true; }
+  closeEdit() { this.isEditOpen = false; }
+  onEditConfirm(payload: Partial<NewReservation>) {
+    if (this.reservation) {
+      this.reservation = { ...this.reservation, ...(payload as any) };
+    }
+    this.isEditOpen = false;
+  }
+}

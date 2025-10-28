@@ -85,3 +85,26 @@ mat-form-field{ width:100%; }
 :host ::ng-deep .mdc-text-field--filled .mdc-text-field__input{
   padding-top:6px; padding-bottom:6px;
 }
+
+/* ===== View mode (detalhes) ===== */
+.view{ padding:16px 20px 22px; display:flex; flex-direction:column; gap:12px; }
+.v-banner{ display:flex; gap:10px; align-items:flex-start; padding:12px; border-radius:6px; border:1px solid #f0e6cc; background:#fdf6e3; color:#8a6d3b; }
+.v-banner mat-icon{ color:#8a6d3b; }
+.v-banner.confirmed{ border-color:#c8e6c9; background:#e8f5e9; color:#1b5e20; }
+.v-banner.confirmed mat-icon{ color:#1b5e20; }
+.v-banner.cancelled{ border-color:#ffcdd2; background:#ffebee; color:#c62828; }
+.v-banner.cancelled mat-icon{ color:#c62828; }
+.v-banner-title{ font-weight:700; margin-bottom:2px; }
+
+.v-card{ background:#fff; border:1px solid #e5e9f2; border-radius:8px; padding:12px; box-shadow:0 2px 4px rgba(0,0,0,.06); }
+.v-card-title{ font-weight:700; display:flex; align-items:center; gap:6px; margin-bottom:10px; }
+
+.v-info-grid{ display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:8px; }
+.v-info-grid.two .v-kv.full{ grid-column: 1 / -1; }
+.v-kv{ display:flex; align-items:center; justify-content:space-between; padding:8px 10px; border:1px solid #eef2f7; background:#fafbfd; border-radius:6px; }
+.v-kv .tag{ padding:3px 8px; border-radius:999px; font-weight:700; }
+.v-kv .tag.orange{ background:#fff3e0; color:#ef6c00; }
+.v-kv .tag.green{ background:#e8f5e9; color:#2e7d32; }
+.v-kv .tag.red{ background:#ffebee; color:#c62828; }
+
+.v-notes{ border:1px solid #eef2f7; background:#fafbfd; border-radius:6px; padding:10px; min-height:60px; white-space:pre-wrap; }

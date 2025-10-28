@@ -10,3 +10,8 @@
 .table-card{ background:#fff; border:1px solid #e5e9f2; box-shadow:0 2px 4px rgba(0,0,0,.06); border-radius:6px; padding:8px 12px 12px; margin-top:14px; }
 .table-card .title{ font-weight:600; margin-bottom:8px; }
 .full{ width:100%; }
+/* Status pill styles */
+.status-pill{ display:inline-block; padding:2px 8px; border-radius:12px; font-weight:600; font-size:12px; }
+.status-pill.confirmed{ background:#e8f5e9; color:#2e7d32; }
+.status-pill.pending{ background:#fff3e0; color:#f57c00; }
+.status-pill.cancelled{ background:#ffebee; color:#c62828; }

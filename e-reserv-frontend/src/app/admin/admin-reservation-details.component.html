@@ -10,7 +10,7 @@
   <div class="header-row">
     <h1 class="title">Reserva #{{ reservation?.id }}</h1>
     <div class="actions">
-      <button mat-stroked-button color="primary">Editar Reserva</button>
+      <button mat-stroked-button color="primary" (click)="openEdit()">Editar Reserva</button>
       <button mat-raised-button color="warn">Excluir reserva</button>
     </div>
   </div>
@@ -88,3 +88,9 @@
   </div>
 </div>
 
+<app-admin-new-reservation-dialog
+  *ngIf="isEditOpen"
+  [mode]="'edit'"
+  [data]="reservation"
+  (close)="closeEdit()"
+  (confirm)="onEditConfirm($event)"></app-admin-new-reservation-dialog>
