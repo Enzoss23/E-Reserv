@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_LOCALE, DateAdapter } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
+import { ToggleOnClickDirective } from '../../core/directives/toggle-on-click.directive';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReservationService } from '../../core/services/reservation.service';
 import { HttpClient } from '@angular/common/http';
@@ -27,6 +28,7 @@ import { Unit } from '../../core/models/unit.model';
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,
+    ToggleOnClickDirective,
   ],
   templateUrl: './reserva-step.component.html',
   styleUrl: './reserva-step.component.css' 

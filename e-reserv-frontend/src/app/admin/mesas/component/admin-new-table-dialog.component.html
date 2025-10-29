@@ -1,0 +1,79 @@
+<div class="overlay">
+  <div class="dialog" role="dialog" aria-modal="true" aria-label="Adicionar mesa">
+    <div class="dialog-header">
+      <div class="dialog-title">Adicionar mesa</div>
+      <button class="close" type="button" aria-label="Fechar" (click)="onCancel()">&times;</button>
+    </div>
+
+    <form class="form" (ngSubmit)="onConfirm()">
+      <div class="grid two">
+        <div class="fld">
+          <div class="fld-label">Número da Mesa</div>
+          <mat-form-field appearance="fill">
+            <input matInput type="number" name="number" [(ngModel)]="form.number" placeholder="Ex: 01" />
+          </mat-form-field>
+        </div>
+        <div class="fld">
+          <div class="fld-label">Nome da Mesa</div>
+          <mat-form-field appearance="fill">
+            <input matInput name="name" [(ngModel)]="form.name" placeholder="Ex: mesa 15" />
+          </mat-form-field>
+        </div>
+
+        <div class="fld">
+          <div class="fld-label">Capacidade (lugares)</div>
+          <mat-form-field appearance="fill">
+            <input matInput type="number" name="chairs" [(ngModel)]="form.chairs" placeholder="Ex: 6 cadeiras" />
+          </mat-form-field>
+        </div>
+        <div class="fld">
+          <div class="fld-label">Área/Ambiente</div>
+          <mat-form-field appearance="fill">
+            <mat-select toggleOnClick name="area" [(ngModel)]="form.area" placeholder="Selecione...">
+              <mat-option *ngFor="let a of areas" [value]="a">{{ a }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="fld">
+          <div class="fld-label">Status</div>
+          <mat-form-field appearance="fill">
+            <mat-select toggleOnClick name="status" [(ngModel)]="form.status" placeholder="Selecione...">
+              <mat-option *ngFor="let s of statuses" [value]="s">{{ s }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="fld">
+          <div class="fld-label">Formato da mesa</div>
+          <mat-form-field appearance="fill">
+            <mat-select toggleOnClick name="shape" [(ngModel)]="form.shape" placeholder="Selecione...">
+              <mat-option *ngFor="let sh of shapes" [value]="sh">{{ sh }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Características</div>
+        <div class="checks">
+          <mat-checkbox [(ngModel)]="form.nearWindow" name="nearWindow">Próxima à janela</mat-checkbox>
+          <mat-checkbox [(ngModel)]="form.wheelchair" name="wheelchair">Acessível para cadeirante</mat-checkbox>
+          <mat-checkbox [(ngModel)]="form.privateArea" name="privateArea">Área privada/reservada</mat-checkbox>
+          <mat-checkbox [(ngModel)]="form.outdoor" name="outdoor">Área externa</mat-checkbox>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Observações</div>
+        <mat-form-field appearance="fill" class="full">
+          <textarea matInput rows="4" name="notes" [(ngModel)]="form.notes" placeholder="Informações adicionais sobre a mesa..."></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="dialog-actions center">
+        <button mat-raised-button color="primary" type="submit">Confirmar</button>
+        <button mat-raised-button color="warn" type="button" (click)="onCancel()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

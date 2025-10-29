@@ -1,0 +1,121 @@
+<div class="metrics">
+  <div class="metric"><div class="label">Total de mesas</div><div class="num">{{ total }}</div></div>
+  <div class="metric"><div class="label">Disponíveis</div><div class="num green">{{ disponiveis }}</div></div>
+  <div class="metric"><div class="label">Ocupadas</div><div class="num red">{{ ocupadas }}</div></div>
+  <div class="metric"><div class="label">Reservadas</div><div class="num orange">{{ reservadas }}</div></div>
+</div>
+
+<div class="grid-layout">
+  <div class="left">
+    <div class="card header">
+      <div class="title-row">
+        <div class="title"><mat-icon>table_bar</mat-icon>Mesas</div>
+      </div>
+      <div class="filters">
+        <mat-form-field appearance="outline" class="grow">
+          <mat-label>Buscar mesa ou cliente</mat-label>
+          <input matInput [(ngModel)]="query" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w140">
+          <mat-label>Lugares</mat-label>
+          <mat-select toggleOnClick [(ngModel)]="capacity">
+            <mat-option [value]="2">2</mat-option>
+            <mat-option [value]="4">4</mat-option>
+            <mat-option [value]="6">6</mat-option>
+            <mat-option [value]="8">8</mat-option>
+            <mat-option [value]="10">10</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w180">
+          <mat-label>Área</mat-label>
+          <mat-select toggleOnClick [(ngModel)]="area">
+            <mat-option value="Salão Principal">Salão Principal</mat-option>
+            <mat-option value="Lounge Bar">Lounge Bar</mat-option>
+            <mat-option value="Varanda">Varanda</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w160">
+          <mat-label>Status</mat-label>
+          <mat-select toggleOnClick [(ngModel)]="status">
+            <mat-option value="Disponível">Disponível</mat-option>
+            <mat-option value="Ocupada">Ocupada</mat-option>
+            <mat-option value="Reservada">Reservada</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="w160">
+          <mat-label>Ordenar</mat-label>
+          <mat-select toggleOnClick [(ngModel)]="order">
+            <mat-option value="numero_asc">Número (cresc.)</mat-option>
+            <mat-option value="numero_desc">Número (decresc.)</mat-option>
+            <mat-option value="nome_asc">Nome (A-Z)</mat-option>
+            <mat-option value="nome_desc">Nome (Z-A)</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="addTable()"><mat-icon>add</mat-icon>Adicionar mesa</button>
+      </div>
+    </div>
+
+    <div class="list">
+      <div class="mesa-card" *ngFor="let m of list()">
+        <div class="pos">{{ m.number }}</div>
+        <div class="main">
+          <div class="name">Mesa {{ m.number }}<span class="sep" *ngIf="m.name"> - </span><span class="client" *ngIf="m.name">{{ m.name }}</span></div>
+          <div class="row small">
+            <div class="chip"><mat-icon>event_seat</mat-icon>{{ m.chairs }} cadeiras</div>
+            <div class="chip"><mat-icon>storefront</mat-icon>{{ m.area }}</div>
+            <div class="chip" *ngIf="m.notes"><mat-icon>sticky_note_2</mat-icon>{{ m.notes }}</div>
+          </div>
+        </div>
+        <div class="right">
+          <div class="status" [ngClass]="{
+              'disp': m.status==='Disponível',
+              'ocup': m.status==='Ocupada',
+              'res': m.status==='Reservada'
+            }">{{ m.status }}</div>
+          <div class="actions">
+            <button mat-icon-button color="primary" matTooltip="Editar" (click)="editTable(m.id)"><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button color="primary" matTooltip="Visualizar" (click)="viewTable(m.id)"><mat-icon>visibility</mat-icon></button>
+            <button mat-icon-button matTooltip="Excluir" (click)="deleteTable(m.id)"><mat-icon>delete</mat-icon></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="right-col">
+    <div class="card side">
+      <div class="side-title">Filtros:</div>
+      <div class="group">
+        <div class="g-title">Status</div>
+        <mat-checkbox color="primary" [(ngModel)]="disp">Disponíveis ({{ disponiveis }})</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="ocup">Ocupadas ({{ ocupadas }})</mat-checkbox>
+        <mat-checkbox color="primary" [(ngModel)]="resv">Reservadas ({{ reservadas }})</mat-checkbox>
+      </div>
+
+      <div class="group">
+        <div class="g-title">Capacidade</div>
+        <mat-checkbox>2 lugares</mat-checkbox>
+        <mat-checkbox>4 lugares</mat-checkbox>
+        <mat-checkbox>6 lugares</mat-checkbox>
+        <mat-checkbox>8+ lugares</mat-checkbox>
+      </div>
+
+      <div class="group">
+        <div class="g-title">Área</div>
+        <mat-checkbox color="primary" [checked]="isAreaSelected('Salão Principal')" (change)="toggleArea('Salão Principal', $event.checked)">Salão Principal</mat-checkbox>
+        <mat-checkbox color="primary" [checked]="isAreaSelected('Lounge Bar')" (change)="toggleArea('Lounge Bar', $event.checked)">Lounge Bar</mat-checkbox>
+        <mat-checkbox color="primary" [checked]="isAreaSelected('Varanda')" (change)="toggleArea('Varanda', $event.checked)">Varanda</mat-checkbox>
+      </div>
+
+      <button mat-stroked-button (click)="clearFilters()"><mat-icon>filter_alt_off</mat-icon>Limpar filtros</button>
+    </div>
+  </div>
+</div>
+
+<!-- Dialog: Adicionar mesa -->
+<app-admin-new-table-dialog *ngIf="isNewOpen" (close)="closeNewTable()" (confirm)="onConfirmTable($event)"></app-admin-new-table-dialog>

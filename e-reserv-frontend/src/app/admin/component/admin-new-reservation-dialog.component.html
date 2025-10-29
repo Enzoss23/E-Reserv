@@ -5,7 +5,6 @@
       <button class="close" type="button" aria-label="Fechar" (click)="onCancel()">&times;</button>
     </div>
 
-    <!-- View Mode -->
     <div *ngIf="isView" class="view">
       <div class="v-banner" [class.pending]="(data?.status||'').toLowerCase().includes('pend')" [class.confirmed]="(data?.status||'').toLowerCase().includes('confirm')" [class.cancelled]="(data?.status||'').toLowerCase().includes('cancel')">
         <mat-icon>info</mat-icon>
