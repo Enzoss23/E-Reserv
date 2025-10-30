@@ -7,9 +7,19 @@
 .card{ background:#fff; border:1px solid #e5e9f2; border-radius:8px; box-shadow:0 2px 4px rgba(0,0,0,.06); }
 .card-header{ display:flex; align-items:center; justify-content:space-between; padding:12px; border-bottom:1px solid #e9edf3; }
 .title{ font-weight:700; display:flex; align-items:center; gap:8px; }
-.header-actions{ display:flex; gap:10px; align-items:center; width:100%; justify-content:flex-end; flex-wrap:wrap; }
-.search{ flex:1; max-width:520px; }
-.w160{ width:160px; }
+.header-actions{ display:flex; gap:5px; align-items:center; width:100%; justify-content:flex-end; flex-wrap:wrap; }
+.add-btn{ font-weight:700; color:#fff; }
+/* green button to match screenshot */
+.add-btn.mat-mdc-raised-button{
+  --mdc-protected-button-container-color:#2e7d32;
+  --mdc-protected-button-label-text-color:#ffffff;
+}
+.add-btn{ background-color:#2e7d32; }
+
+.filters-row{ display:flex; align-items:center; gap:12px; padding:12px; padding-top:8px; }
+.filters-row mat-form-field{ min-width:0; }
+.search{ flex:1 1 auto; max-width:none; }
+.w160{ width:140px; }
 
 .table-wrapper{ padding:0 12px; overflow-x:auto; }
 .table{ width:100%; border-collapse:collapse; min-width:960px; }
@@ -36,11 +46,24 @@ mat-form-field{ width:100%; }
 
 /* Responsive tweaks for notebook widths */
 @media (max-width: 1400px){
-  .w160{ width:150px; }
+  .w160{ width:140px; }
 }
 @media (max-width: 1280px){
-  .header-actions .search{ flex:1 1 100%; min-width:260px; }
-  .header-actions{ justify-content:flex-start; }
+  .filters-row .search{ flex:1 1 100%; min-width:260px; }
+  .filters-row{ flex-wrap:wrap; }
   .table thead th, .table tbody td{ padding:10px 8px; }
   .table-footer{ flex-wrap:wrap; gap:8px; }
+}
+
+/* Short-height screens: reduce paddings and gaps */
+@media (max-height: 800px){
+  .card-header{ padding:10px; }
+  .filters-row{ padding:10px; padding-top:6px; }
+  .table-wrapper{ padding:0 10px; }
+  .table thead th, .table tbody td{ padding:10px 8px; }
+  .table-footer{ padding:10px; }
+}
+@media (max-height: 700px){
+  .metrics{ gap:8px; margin-bottom:10px; }
+  .metric{ padding:10px; }
 }
