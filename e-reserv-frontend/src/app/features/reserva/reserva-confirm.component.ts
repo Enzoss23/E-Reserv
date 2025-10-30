@@ -20,6 +20,7 @@ import { Unit } from '../../core/models/unit.model';
 })
 export class ReservaConfirmComponent implements OnInit {
   unit = signal<Unit | null>(null);
+  payload: any;
   form = this.fb.group({
     name: [ '', [Validators.required, Validators.minLength(2)]],
     phone: [ '', [Validators.required, Validators.minLength(8)]],
@@ -29,23 +30,21 @@ export class ReservaConfirmComponent implements OnInit {
   constructor(private fb: FormBuilder, private router: Router, private reservation: ReservationService, private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.reservation.loadFromStorage();
-    const d = this.reservation.details();
-    const unitId = d?.unitId;
-    if (unitId) {
-      this.http.get<Unit[]>('/assets/mock/units.json').subscribe(list => {
-        this.unit.set(list.find(u => u.id === unitId) || null);
-      });
+    if (this.router.getCurrentNavigation()?.extras.state) {
+      this.payload = this.router.getCurrentNavigation()?.extras.state?.['data'];
+      this.unit.set(this.payload.unit);
+      console.log(this.payload)
     }
   }
 
   confirmar() {
     if (this.form.invalid) return;
-    this.reservation.setCustomer(this.form.value as any);
-    const payload = this.reservation.buildPayload();
+    const payload = {...this.payload, 
+      customerName: this.form.get('name')?.value,
+      customerPhone: this.form.get('phone')?.value,
+      customerEmail: this.form.get('email')?.value,
+    };
     console.log('Reserva pronta para envio', payload);
     alert('Reserva registrada localmente. Integração com API pendente.');
-    this.reservation.clear();
-    this.router.navigateByUrl('/');
   }
 }

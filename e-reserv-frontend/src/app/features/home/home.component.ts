@@ -6,8 +6,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
 import { Unit } from '../../core/models/unit.model';
+import { UnitService } from 'src/app/core/services/unit.service';
 
 @Component({
   standalone: true,
@@ -17,7 +17,7 @@ import { Unit } from '../../core/models/unit.model';
   styleUrl: './home.component.css' 
 })
 export class HomeComponent implements OnInit {
-  units = signal<Unit[]>([]);
+  units = signal<any[]>([]);
   query = '';
   filtered = computed(() => {
     const q = this.query.toLowerCase().trim();
@@ -26,10 +26,13 @@ export class HomeComponent implements OnInit {
     );
   });
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private unitService: UnitService, private router: Router) {}
 
   ngOnInit(): void {
-    this.http.get<Unit[]>('assets/mock/units.json').subscribe((d) => this.units.set(d));
+    this.unitService.findAll().subscribe({
+      next: (res) => this.units.set(res),
+      error: (err) => console.error('Error fetching data:', err)
+    });
   }
 
   openUnit(u: Unit) {

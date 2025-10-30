@@ -10,16 +10,7 @@ bootstrapApplication(AppComponent, {
   providers: [
     provideRouter(routes),
     provideAnimations(),
-    provideHttpClient(
-      withInterceptors([
-        (req, next) => {
-          const cloned = req.clone({
-            headers: req.headers.set('X-Requested-With', 'XMLHttpRequest')
-          });
-          return next(cloned);
-        }
-      ])
-    )
+    provideHttpClient()
   ]
 }).catch(err => console.error(err));
  

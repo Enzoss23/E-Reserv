@@ -1,10 +1,10 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { Unit } from '../../core/models/unit.model';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { UnitService } from 'src/app/core/services/unit.service';
 
 @Component({
   standalone: true,
@@ -15,13 +15,13 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class UnitComponent implements OnInit {
   unit = signal<Unit | null>(null);
-  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {}
+  constructor(private route: ActivatedRoute, private unitService: UnitService, private router: Router) {}
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    this.http.get<Unit[]>('assets/mock/units.json').subscribe((list) => {
-      const u = list.find(x => x.id === id) || null;
-      this.unit.set(u);
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.unitService.findById(id).subscribe({
+      next: (res) => this.unit.set(res),
+      error: (err) => console.error('Error fetching data:', err)
     });
   }
 

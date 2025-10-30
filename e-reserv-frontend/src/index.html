@@ -8,8 +8,7 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
     <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()" />
-    <!-- CSP relaxada para desenvolvimento (necessária para HMR/source maps). Em produção, aplicar via cabeçalhos do servidor. -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'self'; object-src 'none'; connect-src 'self' ws: wss:; img-src 'self' data: blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; style-src-elem 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-eval' blob:; font-src 'self' data: https://fonts.gstatic.com;" />
+    <meta http-equiv="Content-Security-Policy" content="connect-src 'self' http://localhost:8080 ws: wss:;">    
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
@@ -17,6 +16,4 @@
   <body>
     <app-root></app-root>
   </body>
-  <!-- Desenvolvido por E-reserv -->
-  <!-- Nenhum recurso externo é carregado para evitar riscos de CSP -->
 </html>

@@ -1,75 +1,161 @@
 <div class="unit-page">
-      <div class="cover-wrap">
-        <img src="/assets/Mask group.png" alt="Foto do estabelecimento" class="cover-img" />
-        <img src="/assets/image 8.png" alt="Marca" class="brand-overlay" />
-      </div>
+  <div class="cover-wrap">
+    <img
+      src="/assets/Mask group.png"
+      alt="Foto do estabelecimento"
+      class="cover-img"
+    />
+    <img src="/assets/image 8.png" alt="Marca" class="brand-overlay" />
+  </div>
 
-      <div class="container center-block compact">
-        <h2 class="unit-title">{{ unit()?.name }}</h2>
-        <div class="unit-address">{{ unit()?.address }}</div>
+  <div class="container center-block compact">
+    <h2 class="unit-title">{{ unit()?.name }}</h2>
+    <div class="unit-address">{{ unit()?.address }}</div>
 
-        <form [formGroup]="form" class="form-wrap compact">
-          <div class="grid-2">
-            <div class="field-block">
-              <div class="field-title">Data da reserva</div>
-              <mat-form-field appearance="fill" class="field">
-                <mat-icon matPrefix>event</mat-icon>
-                <input matInput [matDatepicker]="picker" placeholder="dd/mm/aaaa" formControlName="date" />
-                <mat-datepicker #picker></mat-datepicker>
-              </mat-form-field>
-            </div>
-
-            <div class="field-block">
-              <div class="field-title">Horário</div>
-              <mat-form-field appearance="fill" class="field">
-                <mat-icon matPrefix>schedule</mat-icon>
-                <input matInput placeholder="12:00h" formControlName="time" />
-              </mat-form-field>
-            </div>
-
-            <div class="field-block">
-              <div class="field-title">Quantidade de pessoas</div>
-              <mat-form-field appearance="fill" class="field">
-                <mat-icon matPrefix>group</mat-icon>
-                <input matInput type="number" min="1" formControlName="people" />
-              </mat-form-field>
-            </div>
-
-            <div class="field-block" mat-form-field appearance="outline" class="w160">
-              <div class="field-title">Ambiente</div>
-              <mat-form-field appearance="fill" class="field">
-                <mat-icon matPrefix>cottage</mat-icon>
-                <mat-select matNativeControl formControlName="area">
-                  <mat-option value="salao">Salão</mat-option>
-                  <mat-option value="lounge">Lounge bar</mat-option>
-                  <mat-option value="externa">Área externa</mat-option>
-                  <mat-option value="bar">Bar</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-          </div>
-
-
-
-        <!-- <mat-form-field appearance="outline" class="w160">
-          <mat-label>Categoria</mat-label>
-          <mat-select>
-            <mat-option value="">Todas</mat-option>
-            <mat-option value="priority">Prioritários</mat-option>
-            <mat-option value="family">Famílias</mat-option>
-            <mat-option value="special">Necessidades especiais</mat-option>
-          </mat-select>          -->
-
-          <div class="field-block full">
-            <div class="field-title">Informações adicionais</div>
-            <mat-form-field appearance="fill" class="field textarea">
-              <textarea matInput rows="3" formControlName="notes" placeholder="Precisa de atendimento especializado ou alguma outra particularidade?"></textarea>
-            </mat-form-field>
-          </div>
-
-          <div class="actions">
-            <button mat-raised-button color="primary" (click)="continuar()" [disabled]="form.invalid">Continuar</button>
-          </div>
-        </form>
-      </div>
+    <h3 class="section-title" *ngIf="confirmStep">
+      Confirmar dados da reserva
+    </h3>
+    <div class="section-sub" *ngIf="confirmStep">
+      Informe seus dados para prosseguir
     </div>
+
+    <form [formGroup]="form" class="form-wrap compact">
+      <div class="grid-2" *ngIf="!confirmStep">
+        <div class="field-block">
+          <div class="field-title">Data da reserva</div>
+          <mat-form-field appearance="fill" class="field">
+            <mat-icon matPrefix>event</mat-icon>
+            <mat-select
+              placeholder="Selecione uma data"
+              formControlName="date"
+              [panelClass]="'dropdown-panel-adjust'"
+            >
+              <mat-option *ngFor="let date of availableDates()" [value]="date">
+                {{ date | date : "dd/MM/yyyy (EEEE)" }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="field-block" mat-form-field appearance="outline">
+          <div class="field-title">Ambiente</div>
+          <mat-form-field appearance="fill" class="field">
+            <mat-icon matPrefix>cottage</mat-icon>
+            <mat-select matNativeControl formControlName="hall">
+              <mat-option *ngFor="let hall of unit()?.halls" [value]="hall">
+                {{ hall.description }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="field-block">
+          <div class="field-title">Quantidade de pessoas</div>
+          <mat-form-field appearance="fill" class="field">
+            <mat-icon matPrefix>group</mat-icon>
+            <input
+              matInput
+              type="number"
+              min="1"
+              max="20"
+              formControlName="people"
+            />
+          </mat-form-field>
+        </div>
+
+        <div class="field-block">
+          <div class="field-title">Horário</div>
+          <mat-form-field appearance="fill" class="field">
+            <mat-icon matPrefix>schedule</mat-icon>
+            <mat-select
+              placeholder="Selecione um horário"
+              formControlName="reservationDate"
+              [panelClass]="'dropdown-panel-adjust'"
+            >
+              <mat-option *ngFor="let date of availableTimes()" [value]="date">
+                {{ date | date : "HH:mm" }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="field-block full" *ngIf="!confirmStep">
+        <div class="field-title">Informações adicionais</div>
+        <mat-form-field appearance="fill" class="field textarea">
+          <textarea
+            matInput
+            rows="3"
+            formControlName="observation"
+            placeholder="Precisa de atendimento especializado ou alguma outra particularidade?"
+          ></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="actions" *ngIf="!confirmStep">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="nextStep()"
+          [disabled]="
+            !this.form.controls.date.valid ||
+            !this.form.controls.hall.valid ||
+            !this.form.controls.people.valid ||
+            !this.form.controls.reservationDate.valid
+          "
+        >
+          Continuar
+        </button>
+      </div>
+
+      <div class="field-block" *ngIf="confirmStep">
+        <div class="field-title">Nome</div>
+        <mat-form-field appearance="fill" class="field">
+          <mat-icon matPrefix>person</mat-icon>
+          <input matInput formControlName="name" placeholder="Nome" />
+        </mat-form-field>
+      </div>
+
+      <div class="field-block" *ngIf="confirmStep">
+        <div class="field-title">Telefone</div>
+        <mat-form-field appearance="fill" class="field">
+          <mat-icon matPrefix>phone</mat-icon>
+          <input matInput formControlName="phone" placeholder="Telefone" />
+        </mat-form-field>
+      </div>
+
+      <div class="field-block full" *ngIf="confirmStep">
+        <div class="field-title">E-mail</div>
+        <mat-form-field appearance="fill" class="field">
+          <mat-icon matPrefix>mail</mat-icon>
+          <input
+            matInput
+            type="email"
+            formControlName="email"
+            placeholder="E-mail"
+          />
+        </mat-form-field>
+      </div>
+
+      <p class="terms" *ngIf="confirmStep">
+        Ao continuar, você aceita os
+        <a href="#" class="link">Termos de Serviço e Reserva</a> em
+        {{ unit()?.name }} - {{ unit()?.address }}, e especificamente aceita que
+        a E-reserv compartilhe suas informações com {{ unit()?.name }} para
+        realizar a transação solicitada.
+      </p>
+
+      <div class="actions" *ngIf="confirmStep">
+        <button
+          mat-raised-button
+          color="primary"
+          type="button"
+          [disabled]="form.invalid"
+          (click)="confirmReservation()"
+        >
+          Confirmar Reserva
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

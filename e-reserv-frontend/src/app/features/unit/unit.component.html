@@ -1,31 +1,31 @@
 <div class="unit-page" *ngIf="unit() as u">
-      <div class="cover-wrap">
-        <img src="assets/Mask group.png" alt="Foto do estabelecimento" class="cover-img" />
-        <img src="assets/image 8.png" alt="Marca" class="brand-overlay" />
-      </div>
+  <div class="cover-wrap">
+    <img src="assets/Mask group.png" alt="Foto do estabelecimento" class="cover-img" />
+    <img src="assets/image 8.png" alt="Marca" class="brand-overlay" />
+  </div>
 
-      <div class="container center-block">
-        <h2 class="unit-title">{{ u.name }}</h2>
-        <div class="unit-address">{{ u.address }}</div>
+  <div class="container center-block">
+    <h2 class="unit-title">{{ u.name }}</h2>
+    <div class="unit-address">{{ u.address }}</div>
 
-        <div class="actions">
-          <button class="action-card" (click)="goReserve(u.id)">
-            <div class="card-title">Fazer reserva de mesa</div>
-            <div class="card-subtitle">Selecione horário e data para nos visitar</div>
-            <mat-icon class="card-icon" fontIcon="event_available"></mat-icon>
-          </button>
+    <div class="actions">
+      <button class="action-card" (click)="goReserve(u.id)">
+        <div class="card-title">Fazer reserva de mesa</div>
+        <div class="card-subtitle">Selecione horário e data para nos visitar</div>
+        <mat-icon class="card-icon" fontIcon="event_available"></mat-icon>
+      </button>
 
-          <button class="action-card" disabled>
-            <div class="card-title">Lista de espera</div>
-            <div class="card-subtitle">Informe quantidade de pessoas</div>
-            <mat-icon class="card-icon" fontIcon="group"></mat-icon>
-          </button>
+      <button class="action-card" disabled>
+        <div class="card-title">Lista de espera</div>
+        <div class="card-subtitle">Informe quantidade de pessoas</div>
+        <mat-icon class="card-icon" fontIcon="group"></mat-icon>
+      </button>
 
-          <button class="action-card" disabled>
-            <div class="card-title">Cardápio</div>
-            <div class="card-subtitle">Cardápio digital da unidade</div>
-            <mat-icon class="card-icon" fontIcon="menu_book"></mat-icon>
-          </button>
-        </div>
-      </div>
+      <button class="action-card" disabled>
+        <div class="card-title">Cardápio</div>
+        <div class="card-subtitle">Cardápio digital da unidade</div>
+        <mat-icon class="card-icon" fontIcon="menu_book"></mat-icon>
+      </button>
     </div>
+  </div>
+</div>
