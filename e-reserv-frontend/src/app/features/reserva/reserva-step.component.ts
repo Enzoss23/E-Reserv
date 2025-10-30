@@ -20,6 +20,7 @@ import { Unit } from "../../core/models/unit.model";
 import { UnitService } from "src/app/core/services/unit.service";
 import { Hall } from "src/app/core/models/hall.model";
 import { startWith, Subject, takeUntil } from "rxjs";
+import { ToggleOnClickDirective } from "src/app/core/directives/toggle-on-click.directive";
 
 interface FormValues {
   date: AbstractControl<Date | null>;
