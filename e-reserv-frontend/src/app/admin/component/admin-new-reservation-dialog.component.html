@@ -36,7 +36,6 @@
           <div class="v-kv"><span>Nome Completo</span><b>{{ data?.name }}</b></div>
           <div class="v-kv"><span>Telefone</span><b>{{ data?.phone || '-' }}</b></div>
           <div class="v-kv full"><span>E-mail</span><b>{{ data?.email || '-' }}</b></div>
-          <div class="v-kv full"><span>CPF</span><b>{{ data?.cpf || '-' }}</b></div>
         </div>
       </div>
 
@@ -138,19 +137,14 @@
           </mat-form-field>
         </div>
 
-        <div class="fld">
+        <div class="fld full">
           <div class="fld-label">E-mail</div>
           <mat-form-field appearance="fill">
             <input matInput type="email" name="email" [(ngModel)]="form.email" />
           </mat-form-field>
         </div>
 
-        <div class="fld">
-          <div class="fld-label">CPF</div>
-          <mat-form-field appearance="fill">
-            <input matInput name="cpf" [(ngModel)]="form.cpf" />
-          </mat-form-field>
-        </div>
+        
       </div>
 
       <div class="divider"></div>

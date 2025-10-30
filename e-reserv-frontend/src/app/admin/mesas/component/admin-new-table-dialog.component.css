@@ -6,8 +6,9 @@
 }
 
 .overlay{ position:fixed; inset:0; background:rgba(0,0,0,.35); display:flex; align-items:center; justify-content:center; z-index:1000; padding:16px; }
-.dialog{ width:clamp(520px, 64vw, 840px); max-width:100%; max-height:calc(100vh - 48px); overflow:auto; background:#fff; border-radius:6px; box-shadow:0 10px 30px rgba(0,0,0,.2); border:1px solid var(--border); }
-.dialog-header{ position:sticky; top:0; z-index:1; display:flex; align-items:center; justify-content:center; padding:18px 20px; background:var(--header); border-bottom:1px solid var(--divider); }
+/* Tamanho fixo conforme mock: 611x662 */
+.dialog{ width:611px; height:662px; max-width:100%; overflow:auto; background:#fff; border-radius:6px; box-shadow:0 10px 30px rgba(0,0,0,.2); border:1px solid var(--border); }
+.dialog-header{ position:static; top:0; z-index:1; display:flex; align-items:center; justify-content:center; padding:18px 20px; background:var(--header); border-bottom:1px solid var(--divider); }
 .dialog-title{ font-size:22px; font-weight:700; color:#111827; }
 .close{ position:absolute; right:8px; top:6px; border:none; background:transparent; font-size:28px; line-height:1; cursor:pointer; color:#6b7280; padding:6px 10px; }
 
@@ -37,7 +38,7 @@ mat-form-field{ width:100%; }
 :host ::ng-deep .mdc-text-field--filled .mdc-text-field__input{ padding-top:6px; padding-bottom:6px; }
 
 @media (min-width: 1800px){
-  .dialog{ width:840px; }
+  .dialog{ width:611px; height:662px; }
 }
 
 /* Monitores baixos: aumentar área útil e compactar */
