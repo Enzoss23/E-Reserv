@@ -1,0 +1,38 @@
+<div class="overlay">
+  <div class="dialog" role="dialog" aria-modal="true" aria-label="Novo cliente">
+    <div class="dialog-header">
+      <div class="dialog-title">Novo cliente</div>
+      <button class="close" type="button" aria-label="Fechar" (click)="onCancel()">&times;</button>
+    </div>
+
+    <form class="form" (ngSubmit)="onConfirm()">
+      <div class="section">
+        <div class="section-title">
+          <mat-icon inline>person</mat-icon>
+          Informações do Cliente
+        </div>
+
+        <mat-form-field appearance="fill" class="full">
+          <mat-label>Nome Completo</mat-label>
+          <input matInput name="name" [(ngModel)]="form.name" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full">
+          <mat-label>E-mail</mat-label>
+          <input matInput type="email" name="email" [(ngModel)]="form.email" />
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="full">
+          <mat-label>Telefone</mat-label>
+          <input matInput name="phone" [(ngModel)]="form.phone" />
+        </mat-form-field>
+      </div>
+
+      <div class="dialog-actions center">
+        <button mat-raised-button color="primary" type="submit">Confirmar</button>
+        <button mat-raised-button color="warn" type="button" (click)="onCancel()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+  
+</div>

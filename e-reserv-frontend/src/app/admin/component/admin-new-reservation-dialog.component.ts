@@ -1,25 +1,12 @@
-import { Component, EventEmitter, Output, Directive, HostListener, Input, OnChanges, SimpleChanges, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, Input, OnChanges, SimpleChanges, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatSelectModule, MatSelect } from '@angular/material/select';
-
-@Directive({
-  selector: 'mat-select[toggleOnClick]',
-  standalone: true
-})
-export class ToggleOnClickDirective {
-  constructor(private sel: MatSelect) {}
-  @HostListener('click', ['$event'])
-  onClick(ev: MouseEvent) {
-    ev.preventDefault();
-    ev.stopPropagation();
-    this.sel.panelOpen ? this.sel.close() : this.sel.open();
-  }
-}
+import { MatSelectModule } from '@angular/material/select';
+import { ToggleOnClickDirective } from '../../core/directives/toggle-on-click.directive';
 
 @Component({
   standalone: true,

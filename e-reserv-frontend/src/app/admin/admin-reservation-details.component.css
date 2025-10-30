@@ -42,3 +42,19 @@
   .grid{ grid-template-columns:1fr; }
 }
 
+/* Additional responsiveness for notebook widths */
+@media (max-width: 1280px){
+  .header-row{ flex-direction:column; align-items:flex-start; gap:12px; }
+  .info-grid{ grid-template-columns:1fr; }
+}
+
+/* Short-height screens: compact spacing */
+@media (max-height: 800px){
+  .page{ gap:10px; }
+  .status-banner{ padding:10px; }
+  .grid{ gap:10px; }
+  .card{ padding:10px; }
+  .info-grid{ gap:6px; }
+  .kv{ padding:6px 8px; }
+  .history-item{ padding:6px; }
+}

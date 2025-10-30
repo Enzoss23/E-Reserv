@@ -1,0 +1,54 @@
+:root{
+  --primary:#0A4697;
+  --border:#e9edf3;
+  --divider:#e5e7eb;
+  --header:#f8fafc;
+}
+
+.overlay{ position:fixed; inset:0; background:rgba(0,0,0,.35); display:flex; align-items:center; justify-content:center; z-index:1000; padding:16px; }
+/* Tamanho fixo conforme mock: 611x662 */
+.dialog{ width:611px; height:662px; max-width:100%; overflow:auto; background:#fff; border-radius:6px; box-shadow:0 10px 30px rgba(0,0,0,.2); border:1px solid var(--border); }
+.dialog-header{ position:static; top:0; z-index:1; display:flex; align-items:center; justify-content:center; padding:18px 20px; background:var(--header); border-bottom:1px solid var(--divider); }
+.dialog-title{ font-size:22px; font-weight:700; color:#111827; }
+.close{ position:absolute; right:8px; top:6px; border:none; background:transparent; font-size:28px; line-height:1; cursor:pointer; color:#6b7280; padding:6px 10px; }
+
+.form{ padding:16px 20px 22px; margin-bottom: 20px; }
+.full{ width:100%; }
+.section{ margin-top:4px; display:flex; flex-direction:column; gap:10px; }
+.section-title{ font-weight:700; margin-bottom:4px; display:flex; align-items:center; gap:6px; }
+.dialog-actions{ display:flex; gap:18px; padding-top:10px; }
+.dialog-actions.center{ justify-content:center; }
+.dialog-actions button{ min-width:160px; }
+
+/* Material tweaks para padronizar com os demais diálogos */
+mat-form-field{ width:100%; }
+:host ::ng-deep .mat-mdc-form-field-subscript-wrapper{ display:none; }
+:host ::ng-deep .mat-mdc-form-field-infix{ padding-top:8px; padding-bottom:8px; }
+:host ::ng-deep .mat-mdc-form-field-appearance-fill .mat-mdc-text-field-wrapper{ background:#fafbfd; border:1px solid var(--border); border-radius:6px; }
+:host ::ng-deep .mat-mdc-form-field:hover .mat-mdc-text-field-wrapper{ border-color:#e3e7ef; }
+:host ::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-text-field-wrapper{ border-color:var(--primary) !important; }
+:host ::ng-deep .mat-mdc-form-field-icon-suffix, :host ::ng-deep .mat-mdc-form-field-icon-prefix{ color:#6b7280; }
+:host ::ng-deep .mdc-text-field--filled .mdc-text-field__input{ padding: 12px 0; }
+
+/* telas largas: mantém o mesmo tamanho */
+@media (min-width: 1400px){ .dialog{ width:611px; height:662px; } }
+@media (min-width: 1900px){ .dialog{ width:611px; height:662px; } }
+
+/* Ajustes para notebooks: evita overflow dos botões */
+@media (max-width: 1280px){
+  .dialog-actions{ flex-wrap:wrap; }
+}
+
+/* Monitores baixos: aumentar área útil e compactar */
+@media (max-height: 800px){
+  .overlay{ padding:12px; }
+  .dialog{ max-height:calc(100vh - 32px); }
+  .form{ padding:14px 16px 18px; }
+}
+@media (max-height: 700px){
+  .overlay{ padding:8px; }
+  .dialog{ max-height:calc(100vh - 16px); }
+  .dialog-header{ padding:14px 16px; }
+  .dialog-title{ font-size:20px; }
+}
+

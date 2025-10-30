@@ -9,7 +9,7 @@
 .title-row{ display:flex; align-items:center; justify-content:space-between; }
 .title{ font-weight:700; }
 .updated{ color:#6b7c93; font-size:12px; }
-.filters{ display:flex; gap:10px; margin-top:8px; }
+.filters{ display:flex; gap:10px; margin-top:8px; flex-wrap:wrap; }
 .filters .grow{ flex:1; }
 .filters .w160{ width:160px; }
 .tip{ display:flex; gap:8px; align-items:flex-start; margin-top:10px; padding:10px; background:#e9f3ff; border:1px solid #cfe3ff; border-radius:6px; color:#0A4697; }
@@ -39,3 +39,23 @@
   .grid-layout{ grid-template-columns:1fr; }
 }
 
+/* Medium desktop adjustments */
+@media (max-width: 1440px){
+  .grid-layout{ grid-template-columns:1fr 280px; }
+}
+@media (max-width: 1280px){
+  .wait-card{ grid-template-columns:48px 1fr; align-items:flex-start; }
+  .right{ grid-column:1 / -1; justify-content:space-between; }
+}
+
+/* Short-height screens: compact spacing */
+@media (max-height: 800px){
+  .metrics{ gap:8px; margin-bottom:10px; }
+  .metric{ padding:10px; }
+  .left .header{ padding:10px; }
+  .filters{ margin-top:6px; gap:8px; }
+  .tip{ margin-top:8px; padding:8px; }
+  .list{ gap:8px; margin-top:10px; }
+  .wait-card{ padding:8px; }
+  .badge{ padding:4px 8px; }
+}

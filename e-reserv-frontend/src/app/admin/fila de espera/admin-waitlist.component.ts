@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { ToggleOnClickDirective } from '../../core/directives/toggle-on-click.directive';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 type WaitItem = {
@@ -20,7 +21,7 @@ type WaitItem = {
 @Component({
   standalone: true,
   selector: 'app-admin-waitlist',
-  imports: [CommonModule, MatIconModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatTooltipModule],
+  imports: [CommonModule, MatIconModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatTooltipModule, ToggleOnClickDirective],
   templateUrl: './admin-waitlist.component.html',
   styleUrl: './admin-waitlist.component.css'
 })

@@ -46,6 +46,7 @@ interface FormValues {
     MatDatepickerModule,
     MatNativeDateModule,
     MatIconModule,
+    ToggleOnClickDirective,
   ],
   templateUrl: "./reserva-step.component.html",
   styleUrl: "./reserva-step.component.css",

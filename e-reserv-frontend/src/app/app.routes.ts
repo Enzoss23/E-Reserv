@@ -31,6 +31,14 @@ export const routes: Routes = [
         path: 'fila',
         loadComponent: () => import('./admin/fila de espera/admin-waitlist.component').then(m => m.AdminWaitlistComponent)
       },
+      {
+        path: 'mesas',
+        loadComponent: () => import('./admin/mesas/admin-tables.component').then(m => m.AdminTablesComponent)
+      },
+      {
+        path: 'clientes',
+        loadComponent: () => import('./admin/clientes/admin-clients.component').then(m => m.AdminClientsComponent)
+      },
     ]
   },
   {

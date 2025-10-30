@@ -15,3 +15,15 @@
     .terms{ font-size:12px; color:#666; margin-top:6px; }
     .link{ color:#0A4697; text-decoration:none; font-weight:700; }
     .actions{ display:flex; justify-content:center; gap:8px; margin-top:12px; }
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .cover-img { height: 240px; }
+  .brand-overlay { height: 120px; bottom: -36px; }
+  .center-block { margin-top: 48px; }
+  .grid-2 { grid-template-columns: 1fr; gap: 12px; }
+  .unit-title { font-size: 20px; }
+  .section-title { font-size: 16px; }
+  .actions button { width: 100%; }
+  .terms { font-size: 12px; }
+}

@@ -1,0 +1,69 @@
+.metrics{ display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:12px; align-items:stretch; margin-bottom:14px; }
+.metric{ background:#fff; border:1px solid #e5e9f2; box-shadow:0 2px 4px rgba(0,0,0,.06); padding:14px; border-radius:6px; display:flex; align-items:center; justify-content:space-between; }
+.metric .label{ font-weight:600; color:#263238; }
+.metric .num{ font-size:24px; color:#0A4697; font-weight:700; }
+.metric .num.green{ color:#2e7d32; }
+
+.card{ background:#fff; border:1px solid #e5e9f2; border-radius:8px; box-shadow:0 2px 4px rgba(0,0,0,.06); }
+.card-header{ display:flex; align-items:center; justify-content:space-between; padding:12px; border-bottom:1px solid #e9edf3; }
+.title{ font-weight:700; display:flex; align-items:center; gap:8px; }
+.header-actions{ display:flex; gap:5px; align-items:center; width:100%; justify-content:flex-end; flex-wrap:wrap; }
+.add-btn{ font-weight:700; color:#fff; }
+/* green button to match screenshot */
+.add-btn.mat-mdc-raised-button{
+  --mdc-protected-button-container-color:#2e7d32;
+  --mdc-protected-button-label-text-color:#ffffff;
+}
+.add-btn{ background-color:#2e7d32; }
+
+.filters-row{ display:flex; align-items:center; gap:12px; padding:12px; padding-top:8px; }
+.filters-row mat-form-field{ min-width:0; }
+.search{ flex:1 1 auto; max-width:none; }
+.w160{ width:140px; }
+
+.table-wrapper{ padding:0 12px; overflow-x:auto; }
+.table{ width:100%; border-collapse:collapse; min-width:960px; }
+.table thead th{ text-align:left; font-weight:600; color:#455a64; border-bottom:1px solid #e9edf3; padding:12px 8px; }
+.table tbody td{ border-bottom:1px solid #eceff4; padding:12px 8px; color:#37474f; }
+.table tbody tr:hover{ background:#fafcff; }
+.table .name{ font-weight:600; color:#263238; }
+
+.vip{ background:#ffecb3; color:#e65100; border:1px solid #ffe0b2; padding:4px 8px; border-radius:6px; font-weight:700; font-size:12px; }
+.regular{ background:#e3f2fd; color:#0d47a1; border:1px solid #bbdefb; padding:4px 8px; border-radius:6px; font-weight:700; font-size:12px; }
+.blocked{ background:#ffebee; color:#b71c1c; border:1px solid #ffcdd2; padding:4px 8px; border-radius:6px; font-weight:700; font-size:12px; }
+
+.th-actions, .actions{ text-align:right; }
+.actions{ white-space:nowrap; }
+
+.table-footer{ display:flex; align-items:center; justify-content:space-between; padding:12px; }
+.pagination{ display:flex; gap:6px; }
+.page.active{ background:#eef4ff; border-color:#c9d8ff; }
+
+/* Material tweaks */
+mat-form-field{ width:100%; }
+:host ::ng-deep .mat-mdc-form-field-subscript-wrapper{ display:none; }
+:host ::ng-deep .mat-mdc-form-field-infix{ padding-top:8px; padding-bottom:8px; }
+
+/* Responsive tweaks for notebook widths */
+@media (max-width: 1400px){
+  .w160{ width:140px; }
+}
+@media (max-width: 1280px){
+  .filters-row .search{ flex:1 1 100%; min-width:260px; }
+  .filters-row{ flex-wrap:wrap; }
+  .table thead th, .table tbody td{ padding:10px 8px; }
+  .table-footer{ flex-wrap:wrap; gap:8px; }
+}
+
+/* Short-height screens: reduce paddings and gaps */
+@media (max-height: 800px){
+  .card-header{ padding:10px; }
+  .filters-row{ padding:10px; padding-top:6px; }
+  .table-wrapper{ padding:0 10px; }
+  .table thead th, .table tbody td{ padding:10px 8px; }
+  .table-footer{ padding:10px; }
+}
+@media (max-height: 700px){
+  .metrics{ gap:8px; margin-bottom:10px; }
+  .metric{ padding:10px; }
+}
