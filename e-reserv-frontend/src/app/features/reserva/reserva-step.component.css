@@ -19,3 +19,15 @@
 .compact .mat-mdc-form-field-icon-prefix{ color:#5F7EB3; margin-right:6px; }
 .textarea .mat-mdc-text-field-wrapper{ height:auto; }
 .compact button.mat-mdc-raised-button{ min-height:36px; padding:0 16px; }
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .cover-img { height: 240px; }
+  .brand-overlay { height: 120px; bottom: -36px; }
+  .center-block { margin-top: 48px; }
+  .grid-2 { grid-template-columns: 1fr; gap: 12px; }
+  .unit-title { font-size: 20px; }
+  .unit-address { font-size: 12px; }
+  .actions { margin-top: 8px; }
+  .actions button { width: 100%; }
+}

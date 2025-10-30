@@ -35,6 +35,10 @@ export const routes: Routes = [
         path: 'mesas',
         loadComponent: () => import('./admin/mesas/admin-tables.component').then(m => m.AdminTablesComponent)
       },
+      {
+        path: 'clientes',
+        loadComponent: () => import('./admin/clientes/admin-clients.component').then(m => m.AdminClientsComponent)
+      },
     ]
   },
   {

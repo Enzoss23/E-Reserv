@@ -42,3 +42,8 @@
   .grid{ grid-template-columns:1fr; }
 }
 
+/* Additional responsiveness for notebook widths */
+@media (max-width: 1280px){
+  .header-row{ flex-direction:column; align-items:flex-start; gap:12px; }
+  .info-grid{ grid-template-columns:1fr; }
+}

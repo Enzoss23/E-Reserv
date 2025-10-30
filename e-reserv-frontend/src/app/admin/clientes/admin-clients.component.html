@@ -1,0 +1,103 @@
+<div class="metrics">
+  <div class="metric">
+    <div class="label">Total de clientes</div>
+    <div class="num">{{ totalClients | number:'1.0-0' }}</div>
+  </div>
+  <div class="metric">
+    <div class="label">Clientes VIP</div>
+    <div class="num green">{{ vipCount }}</div>
+  </div>
+  <div class="metric">
+    <div class="label">Novos este mês</div>
+    <div class="num">{{ newThisMonth }}</div>
+  </div>
+  <div class="metric">
+    <div class="label">Taxa de retorno</div>
+    <div class="num">{{ returnRate }}%</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <div class="title"><mat-icon>group</mat-icon>Clientes</div>
+    <div class="header-actions">
+      <mat-form-field appearance="outline" class="search">
+        <mat-label>Buscar por nome, e-mail, telefone ou CPF...</mat-label>
+        <input matInput [ngModel]="query()" (ngModelChange)="query.set($event)" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w160">
+        <mat-label>Status</mat-label>
+        <mat-select toggleOnClick [ngModel]="statusFilter()" (ngModelChange)="statusFilter.set($event)">
+          <mat-option value="Todos">Todos</mat-option>
+          <mat-option value="VIP">VIP</mat-option>
+          <mat-option value="Regular">Regular</mat-option>
+          <mat-option value="Bloqueado">Bloqueado</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="w160">
+        <mat-label>Ordenar</mat-label>
+        <mat-select toggleOnClick [ngModel]="orderBy()" (ngModelChange)="orderBy.set($event)">
+          <mat-option value="nome_asc">Nome (A-Z)</mat-option>
+          <mat-option value="nome_desc">Nome (Z-A)</mat-option>
+          <mat-option value="reservas_desc">Mais reservas</mat-option>
+          <mat-option value="reservas_asc">Menos reservas</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" (click)="addClient()"><mat-icon>add</mat-icon>Adicionar cliente</button>
+    </div>
+  </div>
+
+  <div class="table-wrapper">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>E-mail</th>
+          <th>Telefone</th>
+          <th>Status</th>
+          <th>Total de reservas</th>
+          <th>Última visita</th>
+          <th class="th-actions">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of list()">
+          <td class="name">{{ c.name }}</td>
+          <td>{{ c.email }}</td>
+          <td>{{ c.phone }}</td>
+          <td>
+            <span class="vip" *ngIf="c.status==='VIP'">VIP</span>
+            <span class="regular" *ngIf="c.status==='Regular'">Regular</span>
+            <span class="blocked" *ngIf="c.status==='Bloqueado'">Bloqueado</span>
+          </td>
+          <td>{{ c.totalReservations }}</td>
+          <td>{{ c.lastVisit }}</td>
+          <td class="actions">
+            <button mat-icon-button color="primary" matTooltip="Editar" (click)="editClient(c.id)"><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button color="primary" matTooltip="Visualizar" (click)="viewClient(c.id)"><mat-icon>visibility</mat-icon></button>
+            <button mat-icon-button matTooltip="Excluir" (click)="deleteClient(c.id)"><mat-icon>delete</mat-icon></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="table-footer">
+    <div class="hint">Mostrando 1-10 de {{ totalClients | number:'1.0-0' }} clientes</div>
+    <div class="pagination">
+      <button mat-stroked-button class="page" disabled>&lt;</button>
+      <button mat-stroked-button class="page active">1</button>
+      <button mat-stroked-button class="page">2</button>
+      <button mat-stroked-button class="page">3</button>
+      <button mat-stroked-button class="page">…</button>
+      <button mat-stroked-button class="page">15</button>
+      <button mat-stroked-button class="page">&gt;</button>
+    </div>
+  </div>
+</div>
+
+<!-- Dialog: Adicionar cliente -->
+<app-admin-new-client-dialog *ngIf="isNewOpen" (close)="closeNewClient()" (confirm)="onConfirmClient($event)"></app-admin-new-client-dialog>

@@ -6,19 +6,9 @@
   --header:#f8fafc;
 }
 
-.overlay{
-  position:fixed; inset:0; background:rgba(0,0,0,.35);
-  display:flex; align-items:center; justify-content:center; z-index:1000;
-}
-.dialog{
-  width: 720px; background:#fff; border-radius:8px;
-  box-shadow:0 10px 30px rgba(0,0,0,.2); border:1px solid var(--border);
-}
-.dialog-header{
-  position:relative; display:flex; align-items:center; justify-content:center;
-  padding:18px 20px; background:var(--header);
-  border-bottom:1px solid var(--divider);
-}
+.overlay{ position:fixed; inset:0; background:rgba(0,0,0,.35); display:flex; align-items:center; justify-content:center; z-index:1000; padding:16px; }
+.dialog{ width:clamp(520px, 64vw, 840px); max-width:100%; max-height:calc(100vh - 48px); overflow:auto; background:#fff; border-radius:6px; box-shadow:0 10px 30px rgba(0,0,0,.2); border:1px solid var(--border); }
+.dialog-header{ position:sticky; top:0; z-index:1; display:flex; align-items:center; justify-content:center; padding:18px 20px; background:var(--header); border-bottom:1px solid var(--divider); }
 .dialog-title{ font-size:22px; font-weight:700; color:#111827; }
 .close{
   position:absolute; right:8px; top:6px;
@@ -108,3 +98,13 @@ mat-form-field{ width:100%; }
 .v-kv .tag.red{ background:#ffebee; color:#c62828; }
 
 .v-notes{ border:1px solid #eef2f7; background:#fafbfd; border-radius:6px; padding:10px; min-height:60px; white-space:pre-wrap; }
+
+@media (min-width: 1800px){
+  .dialog{ width:840px; }
+}
+
+/* Responsive adjustments for notebook widths */
+@media (max-width: 1280px){
+  .grid.two{ grid-template-columns:1fr; }
+  .dialog-actions{ flex-wrap:wrap; justify-content:center; }
+}

@@ -10,7 +10,7 @@
 .left .header{ padding:12px; }
 .title-row{ display:flex; align-items:center; justify-content:space-between; }
 .title{ font-weight:700; display:flex; align-items:center; gap:8px; }
-.filters{ display:flex; gap:10px; margin-top:8px; align-items:center; }
+.filters{ display:flex; gap:10px; margin-top:8px; align-items:center; flex-wrap:wrap; }
 .filters .grow{ flex:1; }
 .filters .w140{ width:140px; }
 .filters .w160{ width:160px; }
@@ -41,6 +41,20 @@
   .grid-layout{ grid-template-columns:1fr; }
 }
 
-.mat-raised-button button {
-  margin-bottom: 10px;
+/* Better use of space on medium desktops */
+@media (max-width: 1440px){
+  .grid-layout{ grid-template-columns:1fr 280px; }
+  .filters .w180{ width:160px; }
+  .filters .w160{ width:150px; }
+  .filters .w140{ width:120px; }
 }
+
+/* Stack action area below on narrower widths */
+@media (max-width: 1280px){
+  .mesa-card{ grid-template-columns:48px 1fr; align-items:flex-start; }
+  .right{ grid-column:1 / -1; justify-content:space-between; }
+  .actions{ justify-content:flex-start; }
+}
+
+/* Ensure add button and chips wrap nicely */
+.filters .mat-raised-button{ margin-bottom:10px; }
