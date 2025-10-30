@@ -109,17 +109,3 @@ mat-form-field{ width:100%; }
   .dialog-actions{ flex-wrap:wrap; justify-content:center; }
 }
 
-/* Short-height screens: increase usable area and compact spacing */
-@media (max-height: 800px){
-  .overlay{ padding:12px; }
-  .dialog{ max-height:calc(100vh - 32px); }
-  .form, .view{ padding:14px 16px 18px; }
-  .grid{ gap:12px; }
-}
-@media (max-height: 700px){
-  .overlay{ padding:8px; }
-  .dialog{ max-height:calc(100vh - 16px); }
-  .dialog-header{ padding:14px 16px; }
-  .dialog-title{ font-size:20px; }
-  .grid{ gap:10px; }
-}

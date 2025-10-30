@@ -169,3 +169,15 @@
       .cal-toolbar{ grid-template-columns: 1fr auto; }
       .cal-legend{ grid-column:1 / -1; justify-content:flex-start; }
     }
+
+    /* Short-height screens: compact metrics and calendar */
+    @media (max-height: 800px){
+      .metrics{ gap:8px; margin-bottom:12px; }
+      .metric{ padding:10px 14px; }
+      .cal-toolbar{ gap:10px; margin-bottom:6px; }
+      .weekdays{ padding:6px 6px; }
+      .cell{ height:82px; }
+    }
+    @media (max-height: 700px){
+      .cell{ height:74px; }
+    }

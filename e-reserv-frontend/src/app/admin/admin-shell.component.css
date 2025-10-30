@@ -28,3 +28,17 @@ a.active{ background:#eef4ff; }
   .nav{ width:180px; }
   .content{ padding:12px; }
 }
+
+/* Height-constrained screens (short monitors) */
+@media (max-height: 800px){
+  .topbar{ min-height:56px; }
+  .with-topbar{ height:calc(100vh - 56px); }
+  .content{ padding:12px; }
+  .topbar .title{ font-size:14px; }
+}
+@media (max-height: 700px){
+  .topbar{ min-height:48px; }
+  .with-topbar{ height:calc(100vh - 48px); }
+  .content{ padding:10px; }
+  .topbar .title{ font-size:13px; }
+}

@@ -20,34 +20,34 @@
 <div class="card">
   <div class="card-header">
     <div class="title"><mat-icon>group</mat-icon>Clientes</div>
-    <div class="header-actions">
-      <mat-form-field appearance="outline" class="search">
-        <mat-label>Buscar por nome, e-mail, telefone ou CPF...</mat-label>
-        <input matInput [ngModel]="query()" (ngModelChange)="query.set($event)" />
-      </mat-form-field>
+    <button mat-raised-button class="add-btn" (click)="addClient()"><mat-icon>add</mat-icon>Adicionar cliente</button>
+  </div>
 
-      <mat-form-field appearance="outline" class="w160">
-        <mat-label>Status</mat-label>
-        <mat-select toggleOnClick [ngModel]="statusFilter()" (ngModelChange)="statusFilter.set($event)">
-          <mat-option value="Todos">Todos</mat-option>
-          <mat-option value="VIP">VIP</mat-option>
-          <mat-option value="Regular">Regular</mat-option>
-          <mat-option value="Bloqueado">Bloqueado</mat-option>
-        </mat-select>
-      </mat-form-field>
+  <div class="filters-row">
+    <mat-form-field appearance="outline" class="search">
+      <mat-label>Buscar por nome, e-mail, telefone ou CPF...</mat-label>
+      <input class="busca" matInput [ngModel]="query()" (ngModelChange)="query.set($event)" />
+    </mat-form-field>
 
-      <mat-form-field appearance="outline" class="w160">
-        <mat-label>Ordenar</mat-label>
-        <mat-select toggleOnClick [ngModel]="orderBy()" (ngModelChange)="orderBy.set($event)">
-          <mat-option value="nome_asc">Nome (A-Z)</mat-option>
-          <mat-option value="nome_desc">Nome (Z-A)</mat-option>
-          <mat-option value="reservas_desc">Mais reservas</mat-option>
-          <mat-option value="reservas_asc">Menos reservas</mat-option>
-        </mat-select>
-      </mat-form-field>
+    <mat-form-field appearance="outline" class="w160">
+      <mat-label>Status</mat-label>
+      <mat-select toggleOnClick [ngModel]="statusFilter()" (ngModelChange)="statusFilter.set($event)">
+        <mat-option value="Todos">Todos</mat-option>
+        <mat-option value="VIP">VIP</mat-option>
+        <mat-option value="Regular">Regular</mat-option>
+        <mat-option value="Bloqueado">Bloqueado</mat-option>
+      </mat-select>
+    </mat-form-field>
 
-      <button mat-raised-button color="primary" (click)="addClient()"><mat-icon>add</mat-icon>Adicionar cliente</button>
-    </div>
+    <mat-form-field appearance="outline" class="w160">
+      <mat-label>Ordenar</mat-label>
+      <mat-select toggleOnClick [ngModel]="orderBy()" (ngModelChange)="orderBy.set($event)">
+        <mat-option value="nome_asc">Nome (A-Z)</mat-option>
+        <mat-option value="nome_desc">Nome (Z-A)</mat-option>
+        <mat-option value="reservas_desc">Mais reservas</mat-option>
+        <mat-option value="reservas_asc">Menos reservas</mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
 
   <div class="table-wrapper">

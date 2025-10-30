@@ -39,3 +39,18 @@ mat-form-field{ width:100%; }
 @media (min-width: 1800px){
   .dialog{ width:840px; }
 }
+
+/* Monitores baixos: aumentar área útil e compactar */
+@media (max-height: 800px){
+  .overlay{ padding:12px; }
+  .dialog{ max-height:calc(100vh - 32px); }
+  .form{ padding:14px 16px 18px; }
+  .grid{ gap:12px; }
+}
+@media (max-height: 700px){
+  .overlay{ padding:8px; }
+  .dialog{ max-height:calc(100vh - 16px); }
+  .dialog-header{ padding:14px 16px; }
+  .dialog-title{ font-size:20px; }
+  .grid{ gap:10px; }
+}

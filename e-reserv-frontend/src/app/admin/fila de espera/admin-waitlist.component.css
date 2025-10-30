@@ -47,3 +47,15 @@
   .wait-card{ grid-template-columns:48px 1fr; align-items:flex-start; }
   .right{ grid-column:1 / -1; justify-content:space-between; }
 }
+
+/* Short-height screens: compact spacing */
+@media (max-height: 800px){
+  .metrics{ gap:8px; margin-bottom:10px; }
+  .metric{ padding:10px; }
+  .left .header{ padding:10px; }
+  .filters{ margin-top:6px; gap:8px; }
+  .tip{ margin-top:8px; padding:8px; }
+  .list{ gap:8px; margin-top:10px; }
+  .wait-card{ padding:8px; }
+  .badge{ padding:4px 8px; }
+}
