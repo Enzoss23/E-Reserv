@@ -14,7 +14,7 @@ import { UnitService } from 'src/app/core/services/unit.service';
   selector: 'app-home',
   imports: [CommonModule, FormsModule, MatFormFieldModule, MatInputModule, MatIconModule, MatButtonModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css' 
+  styleUrls: ['./home.component.css'] 
 })
 export class HomeComponent implements OnInit {
   units = signal<any[]>([]);

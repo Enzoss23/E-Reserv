@@ -12,9 +12,10 @@
 .title{ font-weight:700; display:flex; align-items:center; gap:8px; }
 .filters{ display:flex; gap:10px; margin-top:8px; align-items:center; flex-wrap:wrap; }
 .filters .grow{ flex:1; }
-.filters .w140{ width:140px; }
-.filters .w160{ width:160px; }
-.filters .w180{ width:180px; }
+.filter mat-label { font-size:10; color:#37474f; display:block; }
+.filters .w140{ width:80px; }
+.filters .w160{ width:80px; }
+.filters .w180{ width:80px; }
 
 .list{ display:flex; flex-direction:column; gap:10px; margin-top:12px; }
 .mesa-card{ display:grid; grid-template-columns:48px 1fr auto; align-items:center; gap:12px; background:#fff; border:1px solid #e5e9f2; border-radius:8px; padding:10px; box-shadow:0 2px 4px rgba(0,0,0,.06); }
@@ -52,9 +53,9 @@
 /* Better use of space on medium desktops */
 @media (max-width: 1440px){
   .grid-layout{ grid-template-columns:1fr 280px; }
-  .filters .w180{ width:160px; }
-  .filters .w160{ width:150px; }
-  .filters .w140{ width:120px; }
+  .filters .w180{ width:80px; }
+  .filters .w160{ width:80px; }
+  .filters .w140{ width:80px; }
 }
 
 /* Stack action area below on narrower widths */

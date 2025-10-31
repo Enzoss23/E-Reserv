@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class UnitService {
 
-  private url: string = 'http://localhost:8080/unit'
+  private url: string = 'http://172.20.10.2:8080/unit'
 
   constructor(private http: HttpClient) {}
 
