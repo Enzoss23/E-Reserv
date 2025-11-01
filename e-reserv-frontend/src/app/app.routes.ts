@@ -36,8 +36,24 @@ export const routes: Routes = [
         loadComponent: () => import('./admin/mesas/admin-tables.component').then(m => m.AdminTablesComponent)
       },
       {
+        path: 'mesas/:id',
+        loadComponent: () => import('./admin/mesas/admin-table-details.component').then(m => m.AdminTableDetailsComponent)
+      },
+      {
         path: 'clientes',
         loadComponent: () => import('./admin/clientes/admin-clients.component').then(m => m.AdminClientsComponent)
+      },
+      {
+        path: 'clientes/:id',
+        loadComponent: () => import('./admin/clientes/admin-client-details.component').then(m => m.AdminClientDetailsComponent)
+      },
+      {
+        path: 'relatorios',
+        loadComponent: () => import('./admin/relatorios/admin-reports.component').then(m => m.AdminReportsComponent)
+      },
+      {
+        path: 'configuracoes',
+        loadComponent: () => import('./admin/config/admin-settings.component').then(m => m.AdminSettingsComponent)
       },
     ]
   },

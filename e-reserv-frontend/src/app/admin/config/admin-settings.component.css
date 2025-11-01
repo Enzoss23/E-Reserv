@@ -1,0 +1,13 @@
+.header-row{ display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+.title{ font-size:20px; font-weight:800; display:flex; align-items:center; gap:6px; }
+.actions{ display:flex; gap:10px; }
+
+.grid{ display:flex; flex-direction:column; gap:12px; }
+.card{ background:#fff; border:1px solid #e5e9f2; border-radius:8px; padding:12px; box-shadow:0 2px 4px rgba(0,0,0,.06); }
+.card-title{ font-weight:700; display:flex; align-items:center; gap:6px; margin-bottom:10px; }
+.row{ display:flex; gap:12px; flex-wrap:wrap; }
+
+.w160{ width:160px; }
+.w200{ width:200px; }
+.w300{ width:300px; }
+

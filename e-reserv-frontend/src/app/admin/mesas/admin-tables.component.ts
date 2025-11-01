@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ToggleOnClickDirective } from '../../core/directives/toggle-on-click.directive';
+import { Router } from '@angular/router';
 import { AdminNewTableDialogComponent, NewTablePayload } from './component/admin-new-table-dialog.component';
 
 type TableStatus = 'Disponível' | 'Ocupada' | 'Reservada';
@@ -43,6 +44,7 @@ interface TableItem {
   styleUrl: './admin-tables.component.css'
 })
 export class AdminTablesComponent {
+  private router = inject(Router);
   // Base data (mocked to match the provided layout)
   private data = signal<TableItem[]>([
     { id: 1, number: 1, name: 'Fulano de Tal', chairs: 4, area: 'Salão Principal', notes: 'Idoso, cadeirante', status: 'Ocupada' },
@@ -165,7 +167,11 @@ export class AdminTablesComponent {
     this.isNewOpen = false;
   }
   editTable(id: number) { /* open edit - to implement later */ }
-  viewTable(id: number) { /* navigate/view - to implement later */ }
+  viewTable(id: number) {
+    const item = this.data().find(i => i.id === id);
+    if (!item) return;
+    this.router.navigate(['/gestao/mesas', id], { state: { table: item } });
+  }
   deleteTable(id: number) { this.data.set(this.data().filter(i => i.id !== id)); }
 
   clearFilters() {

@@ -38,7 +38,7 @@
 .group{ margin:10px 0; display:flex; flex-direction:column; gap:6px; }
 .g-title{ font-weight:600; color:#37474f; margin-bottom:2px; }
 
-/* Add button styling to match Clients */
+
 .add-btn{ font-weight:700; color:#fff; }
 .add-btn.mat-mdc-raised-button{
   --mdc-protected-button-container-color:#2e7d32;

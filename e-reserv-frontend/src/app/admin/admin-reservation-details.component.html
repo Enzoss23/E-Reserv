@@ -10,8 +10,14 @@
   <div class="header-row">
     <h1 class="title">Reserva #{{ reservation?.id }}</h1>
     <div class="actions">
-      <button mat-stroked-button color="primary" (click)="openEdit()">Editar Reserva</button>
-      <button mat-raised-button color="warn">Excluir reserva</button>
+      <ng-container *ngIf="!isEditing; else editingBtns">
+        <button mat-stroked-button color="primary" (click)="startInlineEdit()">Editar Reserva</button>
+        <button mat-raised-button color="warn">Excluir reserva</button>
+      </ng-container>
+      <ng-template #editingBtns>
+        <button mat-raised-button color="primary" (click)="saveInlineEdit()">Salvar</button>
+        <button mat-stroked-button (click)="cancelInlineEdit()">Cancelar</button>
+      </ng-template>
     </div>
   </div>
 
@@ -30,30 +36,83 @@
       <div class="card">
         <div class="card-title"><mat-icon>info</mat-icon>Informações da reserva</div>
         <div class="info-grid">
-          <div class="kv"><span>Status</span><b class="tag" [class.orange]="statusClass.pending" [class.green]="statusClass.confirmed" [class.red]="statusClass.cancelled">{{ reservation?.status }}</b></div>
+          <div class="kv">
+            <span>Status</span>
+            <ng-container *ngIf="!isEditing; else stEdit">
+              <b class="tag" [class.orange]="statusClass.pending" [class.green]="statusClass.confirmed" [class.red]="statusClass.cancelled">{{ reservation?.status }}</b>
+            </ng-container>
+            <ng-template #stEdit>
+              <select [(ngModel)]="draft.status">
+                <option>Pendente</option>
+                <option>Confirmada</option>
+                <option>Cancelada</option>
+              </select>
+            </ng-template>
+          </div>
           <div class="kv"><span>ID da Reserva</span><b>#{{ reservation?.id }}</b></div>
-          <div class="kv"><span>Data da Reserva</span><b>{{ reservation?.date }}</b></div>
-          <div class="kv"><span>Horário</span><b>{{ reservation?.time }}</b></div>
-          <div class="kv"><span>Quantidade de Pessoas</span><b>{{ reservation?.people }} {{ reservation?.people === 1 ? 'pessoa' : 'pessoas' }}</b></div>
-          <div class="kv"><span>Ambiente</span><b>{{ reservation?.area }}</b></div>
-          <div class="kv"><span>Mesa Atribuída</span><b>{{ reservation?.assignedTable }}</b></div>
-          <div class="kv"><span>Origem</span><b>{{ reservation?.origin || 'Site' }}</b></div>
+          <div class="kv">
+            <span>Data da Reserva</span>
+            <ng-container *ngIf="!isEditing; else dateEdit"><b>{{ reservation?.date }}</b></ng-container>
+            <ng-template #dateEdit><input type="date" [(ngModel)]="draft.date"></ng-template>
+          </div>
+          <div class="kv">
+            <span>Horário</span>
+            <ng-container *ngIf="!isEditing; else timeEdit"><b>{{ reservation?.time }}</b></ng-container>
+            <ng-template #timeEdit><input type="time" [(ngModel)]="draft.time"></ng-template>
+          </div>
+          <div class="kv">
+            <span>Quantidade de Pessoas</span>
+            <ng-container *ngIf="!isEditing; else pplEdit"><b>{{ reservation?.people }} {{ reservation?.people === 1 ? 'pessoa' : 'pessoas' }}</b></ng-container>
+            <ng-template #pplEdit><input type="number" min="1" [(ngModel)]="draft.people"></ng-template>
+          </div>
+          <div class="kv">
+            <span>Ambiente</span>
+            <ng-container *ngIf="!isEditing; else areaEdit"><b>{{ reservation?.area }}</b></ng-container>
+            <ng-template #areaEdit><input [(ngModel)]="draft.area"></ng-template>
+          </div>
+          <div class="kv">
+            <span>Mesa Atribuída</span>
+            <ng-container *ngIf="!isEditing; else mesaEdit"><b>{{ reservation?.assignedTable }}</b></ng-container>
+            <ng-template #mesaEdit><input [(ngModel)]="draft.assignedTable"></ng-template>
+          </div>
+          <div class="kv">
+            <span>Origem</span>
+            <ng-container *ngIf="!isEditing; else origEdit"><b>{{ reservation?.origin || 'Site' }}</b></ng-container>
+            <ng-template #origEdit><input [(ngModel)]="draft.origin"></ng-template>
+          </div>
         </div>
       </div>
 
       <div class="card">
         <div class="card-title"><mat-icon>person</mat-icon>Informações do Cliente</div>
         <div class="info-grid">
-          <div class="kv"><span>Nome Completo</span><b>{{ reservation?.name }}</b></div>
-          <div class="kv"><span>Telefone</span><b>{{ reservation?.phone || '-' }}</b></div>
-          <div class="kv"><span>E-mail</span><b>{{ reservation?.email || '-' }}</b></div>
-          <div class="kv"><span>CPF</span><b>{{ reservation?.cpf || '-' }}</b></div>
+          <div class="kv">
+            <span>Nome Completo</span>
+            <ng-container *ngIf="!isEditing; else nameEdit"><b>{{ reservation?.name }}</b></ng-container>
+            <ng-template #nameEdit><input [(ngModel)]="draft.name"></ng-template>
+          </div>
+          <div class="kv">
+            <span>Telefone</span>
+            <ng-container *ngIf="!isEditing; else phoneEdit"><b>{{ reservation?.phone || '-' }}</b></ng-container>
+            <ng-template #phoneEdit><input [(ngModel)]="draft.phone"></ng-template>
+          </div>
+          <div class="kv">
+            <span>E-mail</span>
+            <ng-container *ngIf="!isEditing; else emailEdit"><b>{{ reservation?.email || '-' }}</b></ng-container>
+            <ng-template #emailEdit><input [(ngModel)]="draft.email"></ng-template>
+          </div>
+          <div class="kv">
+            <span>CPF</span>
+            <ng-container *ngIf="!isEditing; else cpfEdit"><b>{{ reservation?.cpf || '-' }}</b></ng-container>
+            <ng-template #cpfEdit><input [(ngModel)]="draft.cpf"></ng-template>
+          </div>
         </div>
       </div>
 
       <div class="card">
         <div class="card-title"><mat-icon>edit</mat-icon>Observações</div>
-        <div class="notes">{{ reservation?.notes || '—' }}</div>
+        <div class="notes" *ngIf="!isEditing">{{ reservation?.notes || '—' }}</div>
+        <textarea class="notes" *ngIf="isEditing" [(ngModel)]="draft.notes"></textarea>
       </div>
     </div>
 

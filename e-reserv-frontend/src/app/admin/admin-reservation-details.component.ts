@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,7 +25,7 @@ type NewReservation = {
 @Component({
   standalone: true,
   selector: 'app-admin-reservation-details',
-  imports: [CommonModule, RouterModule, MatIconModule, MatButtonModule, DatePipe, AdminNewReservationDialogComponent],
+  imports: [CommonModule, RouterModule, MatIconModule, MatButtonModule, DatePipe, FormsModule, AdminNewReservationDialogComponent],
   templateUrl: './admin-reservation-details.component.html',
   styleUrl: './admin-reservation-details.component.css'
 })
@@ -33,6 +34,8 @@ export class AdminReservationDetailsComponent implements OnInit {
 
   reservation!: NewReservation | null;
   isEditOpen = false;
+  isEditing = false;
+  draft: NewReservation | null = null;
 
   ngOnInit(): void {
     const nav = this.router.getCurrentNavigation();
@@ -65,5 +68,23 @@ export class AdminReservationDetailsComponent implements OnInit {
       this.reservation = { ...this.reservation, ...(payload as any) };
     }
     this.isEditOpen = false;
+  }
+
+  // Inline edit helpers
+  startInlineEdit() {
+    if (!this.reservation) return;
+    this.draft = { ...this.reservation };
+    this.isEditing = true;
+  }
+  cancelInlineEdit() {
+    this.isEditing = false;
+    this.draft = null;
+  }
+  saveInlineEdit() {
+    if (this.reservation && this.draft) {
+      this.reservation = { ...this.reservation, ...this.draft };
+    }
+    this.isEditing = false;
+    this.draft = null;
   }
 }

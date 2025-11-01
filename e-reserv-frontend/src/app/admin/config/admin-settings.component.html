@@ -1,0 +1,72 @@
+<div class="header-row">
+  <h1 class="title"><mat-icon>settings</mat-icon>Configurações do sistema</h1>
+  <div class="actions">
+    <button mat-raised-button color="primary" (click)="save()"><mat-icon>save</mat-icon>Salvar</button>
+    <button mat-stroked-button (click)="reset()"><mat-icon>restart_alt</mat-icon>Restaurar padrão</button>
+  </div>
+  </div>
+
+<div class="grid">
+  <div class="card">
+    <div class="card-title"><mat-icon>storefront</mat-icon>Geral</div>
+    <div class="row">
+      <mat-form-field appearance="outline" class="w300">
+        <mat-label>Nome da unidade</mat-label>
+        <input matInput [(ngModel)]="form.restaurantName" />
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline" class="w160">
+        <mat-label>Abre às</mat-label>
+        <input matInput type="time" [(ngModel)]="form.openingHour" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w160">
+        <mat-label>Fecha às</mat-label>
+        <input matInput type="time" [(ngModel)]="form.closingHour" />
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="w160">
+        <mat-label>Área padrão</mat-label>
+        <mat-select [(ngModel)]="form.defaultArea">
+          <mat-option value="Salão Principal">Salão Principal</mat-option>
+          <mat-option value="Lounge Bar">Lounge Bar</mat-option>
+          <mat-option value="Varanda">Varanda</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><mat-icon>event</mat-icon>Reservas</div>
+    <div class="row">
+      <mat-form-field appearance="outline" class="w160">
+        <mat-label>Tamanho máximo do grupo</mat-label>
+        <input matInput type="number" min="1" [(ngModel)]="form.maxPartySize" />
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-slide-toggle color="primary" [(ngModel)]="form.autoConfirmOnline">Confirmar automaticamente reservas do site</mat-slide-toggle>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><mat-icon>notifications</mat-icon>Notificações</div>
+    <div class="row">
+      <mat-checkbox color="primary" [(ngModel)]="form.notifyEmail">E-mail</mat-checkbox>
+      <mat-checkbox color="primary" [(ngModel)]="form.notifySms">SMS</mat-checkbox>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title"><mat-icon>palette</mat-icon>Aparência</div>
+    <div class="row">
+      <mat-form-field appearance="outline" class="w200">
+        <mat-label>Tema</mat-label>
+        <mat-select [(ngModel)]="form.theme">
+          <mat-option value="light">Claro</mat-option>
+          <mat-option value="dark">Escuro</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+</div>
+

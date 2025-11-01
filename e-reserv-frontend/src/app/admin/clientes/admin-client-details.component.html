@@ -1,0 +1,104 @@
+<div class="page">
+  <div class="breadcrumbs">
+    <span class="crumb" (click)="back()">/ Clientes</span>
+    <span class="sep">/</span>
+    <span class="crumb">Detalhes do Cliente</span>
+    <span class="sep">/</span>
+    <span class="crumb strong">#{{ client?.id }}</span>
+  </div>
+
+  <div class="header-row">
+    <h1 class="title">Cliente #{{ client?.id }}</h1>
+    <div class="actions">
+      <ng-container *ngIf="!isEditing; else editingBtns">
+        <button mat-stroked-button color="primary" (click)="startEdit()">Editar cliente</button>
+        <button mat-raised-button color="warn">Excluir cliente</button>
+      </ng-container>
+      <ng-template #editingBtns>
+        <button mat-raised-button color="primary" (click)="saveEdit()">Salvar</button>
+        <button mat-stroked-button (click)="cancelEdit()">Cancelar</button>
+      </ng-template>
+    </div>
+  </div>
+
+  <div class="status-banner" [class.confirmed]="isVip()" [class.cancelled]="isBlocked()">
+    <mat-icon>person</mat-icon>
+    <div>
+      <div class="b-title">Status do Cliente</div>
+      <div *ngIf="isVip()">Cliente VIP com tratamento prioritário.</div>
+      <div *ngIf="isBlocked()">Cliente bloqueado para novas reservas.</div>
+      <div *ngIf="!isVip() && !isBlocked()">Cliente regular.</div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="left">
+      <div class="card">
+        <div class="card-title"><mat-icon>info</mat-icon>Informações do cliente</div>
+        <div class="info-grid">
+          <div class="kv">
+            <span>Nome</span>
+            <ng-container *ngIf="!isEditing; else nameEdit"><b>{{ client?.name }}</b></ng-container>
+            <ng-template #nameEdit><input [(ngModel)]="draft.name"></ng-template>
+          </div>
+          <div class="kv">
+            <span>E-mail</span>
+            <ng-container *ngIf="!isEditing; else emailEdit"><b>{{ client?.email }}</b></ng-container>
+            <ng-template #emailEdit><input [(ngModel)]="draft.email"></ng-template>
+          </div>
+          <div class="kv">
+            <span>Telefone</span>
+            <ng-container *ngIf="!isEditing; else phoneEdit"><b>{{ client?.phone }}</b></ng-container>
+            <ng-template #phoneEdit><input [(ngModel)]="draft.phone"></ng-template>
+          </div>
+          <div class="kv">
+            <span>Status</span>
+            <ng-container *ngIf="!isEditing; else statusEdit">
+              <b class="tag" [class.green]="isVip()" [class.red]="isBlocked()" [class.orange]="!isVip() && !isBlocked()">{{ client?.status }}</b>
+            </ng-container>
+            <ng-template #statusEdit>
+              <select [(ngModel)]="draft.status">
+                <option>VIP</option>
+                <option>Regular</option>
+                <option>Bloqueado</option>
+              </select>
+            </ng-template>
+          </div>
+          <div class="kv">
+            <span>Total de Reservas</span>
+            <ng-container *ngIf="!isEditing; else totalEdit"><b>{{ client?.totalReservations }}</b></ng-container>
+            <ng-template #totalEdit><input type="number" [(ngModel)]="draft.totalReservations"></ng-template>
+          </div>
+          <div class="kv">
+            <span>Última visita</span>
+            <ng-container *ngIf="!isEditing; else lastEdit"><b>{{ client?.lastVisit }}</b></ng-container>
+            <ng-template #lastEdit><input [(ngModel)]="draft.lastVisit"></ng-template>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><mat-icon>history</mat-icon>Últimas atividades</div>
+        <div class="history-item">
+          <mat-icon>event</mat-icon>
+          <div>
+            <div class="h-date">{{ client?.lastVisit }}</div>
+            <div>Última visita registrada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="card side">
+        <div class="side-title"><mat-icon>bolt</mat-icon>Ações Rápidas</div>
+        <button mat-stroked-button color="primary" class="side-btn" (click)="marcarVip()"><mat-icon>star</mat-icon>Marcar como VIP</button>
+        <button mat-stroked-button class="side-btn" (click)="marcarRegular()"><mat-icon>person</mat-icon>Marcar como Regular</button>
+        <button mat-stroked-button class="side-btn" *ngIf="!isBlocked()" (click)="bloquear()"><mat-icon>block</mat-icon>Bloquear cliente</button>
+        <button mat-stroked-button class="side-btn" *ngIf="isBlocked()" (click)="desbloquear()"><mat-icon>lock_open</mat-icon>Desbloquear cliente</button>
+        <button mat-stroked-button class="side-btn"><mat-icon>sms</mat-icon>Enviar SMS</button>
+        <button mat-stroked-button class="side-btn"><mat-icon>mail</mat-icon>Enviar E-mail</button>
+      </div>
+    </div>
+  </div>
+</div>

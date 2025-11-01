@@ -1,54 +1,128 @@
 :root{
   --primary:#0A4697;
-  --border:#e9edf3;
+  --border:#e9edf3;     
+  --label:#6b7280;       
   --divider:#e5e7eb;
   --header:#f8fafc;
 }
 
 .overlay{ position:fixed; inset:0; background:rgba(0,0,0,.35); display:flex; align-items:center; justify-content:center; z-index:1000; padding:16px; }
-/* Tamanho fixo conforme mock: 611x662 */
-.dialog{ width:611px; height:662px; max-width:100%; overflow:auto; background:#fff; border-radius:6px; box-shadow:0 10px 30px rgba(0,0,0,.2); border:1px solid var(--border); }
+
+.dialog{ width:30%; height:60%; max-width:100%; overflow:auto; background:#fff; border-radius:6px; box-shadow:0 10px 30px rgba(0,0,0,.2); border:1px solid var(--border); }
 .dialog-header{ position:static; top:0; z-index:1; display:flex; align-items:center; justify-content:center; padding:18px 20px; background:var(--header); border-bottom:1px solid var(--divider); }
 .dialog-title{ font-size:22px; font-weight:700; color:#111827; }
-.close{ position:absolute; right:8px; top:6px; border:none; background:transparent; font-size:28px; line-height:1; cursor:pointer; color:#6b7280; padding:6px 10px; }
+.close{
+  position:absolute; right:8px; top:6px;
+  border:none; background:transparent; font-size:28px; line-height:1;
+  cursor:pointer; color:#6b7280; padding:6px 10px;
+}
 
-.form{ padding:16px 20px 22px; margin-bottom: 20px; }
-.full{ width:100%; }
-.section{ margin-top:4px; display:flex; flex-direction:column; gap:10px; }
-.section-title{ font-weight:700; margin-bottom:4px; display:flex; align-items:center; gap:6px; }
-.dialog-actions{ display:flex; gap:18px; padding-top:10px; }
+.form{ padding:16px 20px 22px; }
+.grid{ display:grid; gap:14px; }
+.grid.two{ grid-template-columns:repeat(2, minmax(0,1fr)); column-gap:16px; }
+.full{ width:100%; margin-bottom: 20px; }
+.grid.two .full{ grid-column: 1 / -1; }
+
+.fld{ display:flex; flex-direction:column; }
+.fld-label{
+  font-size:12px; font-weight:600; color:var(--label);
+  margin:2px 0 6px;
+}
+
+.section-line{
+  display:flex; align-items:center; gap:8px;
+  font-weight:700; color:#111827; margin:4px 0 8px;
+}
+.section-ic{ font-size:20px; }
+
+.divider{ border-top:1px solid var(--divider); margin:12px 0 14px; }
+
+.dialog-actions{
+  display:flex; gap:18px; padding-top:10px;
+}
 .dialog-actions.center{ justify-content:center; }
 .dialog-actions button{ min-width:160px; }
 
-/* Material tweaks para padronizar com os demais diálogos */
+/* ===== Material tweaks para parecer com o mock ===== */
 mat-form-field{ width:100%; }
+
+/* remove área de hints para reduzir altura */
 :host ::ng-deep .mat-mdc-form-field-subscript-wrapper{ display:none; }
+
+/* encolhe verticalmente */
 :host ::ng-deep .mat-mdc-form-field-infix{ padding-top:8px; padding-bottom:8px; }
-:host ::ng-deep .mat-mdc-form-field-appearance-fill .mat-mdc-text-field-wrapper{ background:#fafbfd; border:1px solid var(--border); border-radius:6px; }
-:host ::ng-deep .mat-mdc-form-field:hover .mat-mdc-text-field-wrapper{ border-color:#e3e7ef; }
-:host ::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-text-field-wrapper{ border-color:var(--primary) !important; }
-:host ::ng-deep .mat-mdc-form-field-icon-suffix, :host ::ng-deep .mat-mdc-form-field-icon-prefix{ color:#6b7280; }
-:host ::ng-deep .mdc-text-field--filled .mdc-text-field__input{ padding: 12px 0; }
 
-/* telas largas: mantém o mesmo tamanho */
-@media (min-width: 1400px){ .dialog{ width:611px; height:662px; } }
-@media (min-width: 1900px){ .dialog{ width:611px; height:662px; } }
-
-/* Ajustes para notebooks: evita overflow dos botões */
-@media (max-width: 1280px){
-  .dialog-actions{ flex-wrap:wrap; }
+/* aparência "fill" com leve fundo e borda quase imperceptível */
+:host ::ng-deep .mat-mdc-form-field-appearance-fill .mat-mdc-text-field-wrapper{
+  background:#fafbfd;
+  border:1px solid var(--border);
+  border-radius:6px;
+}
+:host ::ng-deep .mat-mdc-form-field:hover .mat-mdc-text-field-wrapper{
+  border-color:#e3e7ef;
 }
 
-/* Monitores baixos: aumentar área útil e compactar */
+/* foco azul primário */
+:host ::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-text-field-wrapper{
+  border-color:var(--primary) !important;
+}
+
+/* ícones de sufixo/prefixo discretos */
+:host ::ng-deep .mat-mdc-form-field-icon-suffix,
+:host ::ng-deep .mat-mdc-form-field-icon-prefix{
+  color:#6b7280;
+}
+
+/* inputs e selects com altura mais compacta */
+:host ::ng-deep .mdc-text-field--filled .mdc-text-field__input{
+  padding-top:6px; padding-bottom:6px;
+}
+
+/* ===== View mode (detalhes) ===== */
+.view{ padding:16px 20px 22px; display:flex; flex-direction:column; gap:12px; }
+.v-banner{ display:flex; gap:10px; align-items:flex-start; padding:12px; border-radius:6px; border:1px solid #f0e6cc; background:#fdf6e3; color:#8a6d3b; }
+.v-banner mat-icon{ color:#8a6d3b; }
+.v-banner.confirmed{ border-color:#c8e6c9; background:#e8f5e9; color:#1b5e20; }
+.v-banner.confirmed mat-icon{ color:#1b5e20; }
+.v-banner.cancelled{ border-color:#ffcdd2; background:#ffebee; color:#c62828; }
+.v-banner.cancelled mat-icon{ color:#c62828; }
+.v-banner-title{ font-weight:700; margin-bottom:2px; }
+
+.v-card{ background:#fff; border:1px solid #e5e9f2; border-radius:8px; padding:12px; box-shadow:0 2px 4px rgba(0,0,0,.06); }
+.v-card-title{ font-weight:700; display:flex; align-items:center; gap:6px; margin-bottom:10px; }
+
+.v-info-grid{ display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:8px; }
+.v-info-grid.two .v-kv.full{ grid-column: 1 / -1; }
+.v-kv{ display:flex; align-items:center; justify-content:space-between; padding:8px 10px; border:1px solid #eef2f7; background:#fafbfd; border-radius:6px; }
+.v-kv .tag{ padding:3px 8px; border-radius:999px; font-weight:700; }
+.v-kv .tag.orange{ background:#fff3e0; color:#ef6c00; }
+.v-kv .tag.green{ background:#e8f5e9; color:#2e7d32; }
+.v-kv .tag.red{ background:#ffebee; color:#c62828; }
+
+.v-notes{ border:1px solid #eef2f7; background:#fafbfd; border-radius:6px; padding:10px; min-height:60px; white-space:pre-wrap; }
+
+/* Mantém o mesmo tamanho em telas grandes */
+@media (min-width: 1800px){
+  .dialog{ width:611px; height:662px; }
+}
+
+/* Responsive adjustments for notebook widths */
+@media (max-width: 1280px){
+  .grid.two{ grid-template-columns:1fr; }
+  .dialog-actions{ flex-wrap:wrap; justify-content:center; }
+}
+
+/* Short-height screens: increase usable area and compact spacing */
 @media (max-height: 800px){
   .overlay{ padding:12px; }
   .dialog{ max-height:calc(100vh - 32px); }
-  .form{ padding:14px 16px 18px; }
+  .form, .view{ padding:14px 16px 18px; }
+  .grid{ gap:12px; }
 }
 @media (max-height: 700px){
   .overlay{ padding:8px; }
   .dialog{ max-height:calc(100vh - 16px); }
   .dialog-header{ padding:14px 16px; }
   .dialog-title{ font-size:20px; }
+  .grid{ gap:10px; }
 }
-

@@ -1,5 +1,6 @@
 :root{
   --primary:#0A4697;
+  --button:#41ADE7;
   --border:#e9edf3;      /* borda bem suave */
   --label:#6b7280;       /* cinza dos títulos de campo */
   --divider:#e5e7eb;
@@ -7,7 +8,7 @@
 }
 
 .overlay{ position:fixed; inset:0; background:rgba(0,0,0,.35); display:flex; align-items:center; justify-content:center; z-index:1000; padding:16px; }
-/* Tamanho fixo conforme mock: 611x662 */
+
 .dialog{ width:45%; height:80%; max-width:100%; overflow:auto; background:#fff; border-radius:6px; box-shadow:0 10px 30px rgba(0,0,0,.2); border:1px solid var(--border); }
 .dialog-header{ position:static; top:0; z-index:1; display:flex; align-items:center; justify-content:center; padding:18px 20px; background:var(--header); border-bottom:1px solid var(--divider); }
 .dialog-title{ font-size:22px; font-weight:700; color:#111827; }

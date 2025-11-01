@@ -1,0 +1,46 @@
+<div class="metrics">
+  <mat-card class="metric"><div class="metric-left"><div class="metric-title">Total de reservas</div></div><div class="metric-num">{{ totalReservations }}</div></mat-card>
+  <mat-card class="metric"><div class="metric-left"><div class="metric-title">Confirmadas</div></div><div class="metric-num">{{ confirmed }}</div></mat-card>
+  <mat-card class="metric"><div class="metric-left"><div class="metric-title">Canceladas</div></div><div class="metric-num warn">{{ cancelled }}</div></mat-card>
+  <mat-card class="metric"><div class="metric-left"><div class="metric-title">No-shows</div></div><div class="metric-num warn">{{ noShows }}</div></mat-card>
+  <mat-card class="metric"><div class="metric-left"><div class="metric-title">Taxa média de ocupação</div></div><div class="metric-num">{{ avgOccupancy }}%</div></mat-card>
+  <mat-card class="metric"><div class="metric-left"><div class="metric-title">Tamanho médio do grupo</div></div><div class="metric-num">{{ avgPartySize }}</div></mat-card>
+</div>
+
+<div class="grid">
+  <mat-card class="panel">
+    <div class="panel-title"><mat-icon>bar_chart</mat-icon>Reservas por mês</div>
+    <div class="bars">
+      <div class="bar" *ngFor="let m of months">
+        <div class="bar-inner" [style.height.%]="barHeight(m.reservations)"></div>
+        <div class="bar-label">{{ m.label }}</div>
+      </div>
+    </div>
+  </mat-card>
+
+  <mat-card class="panel">
+    <div class="panel-title"><mat-icon>show_chart</mat-icon>Ocupação média</div>
+    <svg viewBox="0 0 100 40" class="line">
+      <polyline class="line-path" [attr.points]="polylinePoints"></polyline>
+      <g *ngFor="let m of months; let i = index">
+        <circle class="dot" [attr.cx]="cx(i)" [attr.cy]="cy(m)" r="1.5" />
+      </g>
+    </svg>
+    <div class="legend">
+      <span class="badge blue"></span> Ocupação (%)
+    </div>
+  </mat-card>
+
+  <mat-card class="panel table">
+    <div class="panel-title"><mat-icon>leaderboard</mat-icon>Resumo</div>
+    <table>
+      <tr><th>Mês</th><th>Reservas</th><th>Cancelamentos</th><th>Ocupação</th></tr>
+      <tr *ngFor="let m of months">
+        <td>{{ m.label }}</td>
+        <td>{{ m.reservations }}</td>
+        <td>{{ m.cancels }}</td>
+        <td>{{ m.occupancy }}%</td>
+      </tr>
+    </table>
+  </mat-card>
+</div>

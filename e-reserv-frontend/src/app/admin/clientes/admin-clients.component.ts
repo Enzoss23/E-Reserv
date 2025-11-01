@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ToggleOnClickDirective } from '../../core/directives/toggle-on-click.directive';
 import { AdminNewClientDialogComponent, NewClientPayload } from './component';
+import { Router } from '@angular/router';
 
 type ClientStatus = 'VIP' | 'Regular' | 'Bloqueado';
 
@@ -41,6 +42,7 @@ export interface ClientItem {
   styleUrl: './admin-clients.component.css',
 })
 export class AdminClientsComponent {
+  private router = inject(Router);
   // Mock de clientes para compor a tela
   private data = signal<ClientItem[]>([
     { id: 1, name: 'Fulano Beltrano Silveira', email: 'fulano@email.com', phone: '+55 11 2345-6789', status: 'VIP', totalReservations: 15, lastVisit: '28/10/2025' },
@@ -115,6 +117,10 @@ export class AdminClientsComponent {
     this.isNewOpen = false;
   }
   editClient(id: number) { /* implementar depois */ }
-  viewClient(id: number) { /* implementar depois */ }
+  viewClient(id: number) {
+    const item = this.data().find(c => c.id === id);
+    if (!item) return;
+    this.router.navigate(['/gestao/clientes', id], { state: { client: item } });
+  }
   deleteClient(id: number) { this.data.set(this.data().filter(c => c.id !== id)); }
 }
