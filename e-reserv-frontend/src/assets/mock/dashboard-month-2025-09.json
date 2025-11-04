@@ -1,0 +1,37 @@
+{
+  "label": "Setembro de 2025",
+  "grid": [
+    {"day":1,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":2,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":3,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":4,"reserved":0,"available":0,"cancels":0,"noshows":0,"unavailable":true},
+    {"day":5,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":6,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":7,"unavailable":true},
+    {"day":8,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":9,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":10,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":11,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":12,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":13,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":14,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":15,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":16,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":17,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":18,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":19,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":20,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":21,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":22,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":23,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":24,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":25,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":26,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":27,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":28,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":29,"reserved":50,"available":100,"cancels":5,"noshows":2},
+    {"day":30,"unavailable":true},
+    {}, {}, {}
+  ]
+}
+

@@ -1,0 +1,11 @@
+{
+  "confirmedReservations": 45,
+  "cancelledReservations": 3,
+  "occupancyRate": 30,
+  "waitlistCount": 12,
+  "pendingReservations": 15,
+  "tablesAvailable": 70,
+  "tablesOccupied": 30,
+  "recentNoShows": 2
+}
+

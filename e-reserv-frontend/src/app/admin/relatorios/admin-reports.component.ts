@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { ReportService, ReportSummary } from '../services/report.service';
 
 type MonthPoint = { label: string; reservations: number; cancels: number; occupancy: number };
 
@@ -13,7 +14,8 @@ type MonthPoint = { label: string; reservations: number; cancels: number; occupa
   templateUrl: './admin-reports.component.html',
   styleUrl: './admin-reports.component.css'
 })
-export class AdminReportsComponent {
+export class AdminReportsComponent implements OnInit {
+  private reportService = inject(ReportService);
   // KPIs (mock)
   totalReservations = 1245;
   confirmed = 968;
@@ -23,20 +25,19 @@ export class AdminReportsComponent {
   avgPartySize = 3.4; // pax
 
   // Series (mock)
-  months: MonthPoint[] = [
-    { label: 'Jan', reservations: 80, cancels: 6,  occupancy: 55 },
-    { label: 'Fev', reservations: 92, cancels: 7,  occupancy: 60 },
-    { label: 'Mar', reservations: 110,cancels: 8,  occupancy: 65 },
-    { label: 'Abr', reservations: 96, cancels: 10, occupancy: 62 },
-    { label: 'Mai', reservations: 120,cancels: 7,  occupancy: 70 },
-    { label: 'Jun', reservations: 130,cancels: 9,  occupancy: 74 },
-    { label: 'Jul', reservations: 145,cancels: 11, occupancy: 78 },
-    { label: 'Ago', reservations: 160,cancels: 12, occupancy: 81 },
-    { label: 'Set', reservations: 150,cancels: 9,  occupancy: 79 },
-    { label: 'Out', reservations: 170,cancels: 10, occupancy: 83 },
-    { label: 'Nov', reservations: 165,cancels: 8,  occupancy: 82 },
-    { label: 'Dez', reservations: 188,cancels: 15, occupancy: 85 },
-  ];
+  months: MonthPoint[] = [];
+
+  ngOnInit(): void {
+    this.reportService.getSummary().subscribe((summary: ReportSummary) => {
+      this.totalReservations = summary.totalReservations;
+      this.confirmed = summary.confirmed;
+      this.cancelled = summary.cancelled;
+      this.noShows = summary.noShows;
+      this.avgOccupancy = summary.avgOccupancy;
+      this.avgPartySize = summary.avgPartySize;
+      this.months = summary.months;
+    });
+  }
 
   maxReservations() {
     return Math.max(...this.months.map(m => m.reservations));

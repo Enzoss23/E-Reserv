@@ -1,0 +1,8 @@
+[
+  { "id": 1, "name": "Fulano Beltrano Silveira", "email": "fulano1@email.com", "phone": "+55 11 2345-6789", "status": "VIP", "totalReservations": 15, "lastVisit": "28/10/2025" },
+  { "id": 2, "name": "Maria da Silva", "email": "maria@email.com", "phone": "+55 21 9988-7766", "status": "Regular", "totalReservations": 4, "lastVisit": "14/10/2025" },
+  { "id": 3, "name": "João Pereira", "email": "joao@email.com", "phone": "+55 11 9234-5678", "status": "Bloqueado", "totalReservations": 2, "lastVisit": "02/09/2025" },
+  { "id": 4, "name": "Ana Costa", "email": "ana@email.com", "phone": "+55 31 3333-4444", "status": "VIP", "totalReservations": 19, "lastVisit": "21/10/2025" },
+  { "id": 5, "name": "Bruno Lima", "email": "bruno@email.com", "phone": "+55 41 9000-1111", "status": "Regular", "totalReservations": 7, "lastVisit": "05/10/2025" }
+]
+

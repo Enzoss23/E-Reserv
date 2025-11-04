@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ToggleOnClickDirective } from '../../core/directives/toggle-on-click.directive';
 import { AdminNewClientDialogComponent, NewClientPayload } from './component';
+import { ClientService } from '../services/client.service';
 import { Router } from '@angular/router';
 
 type ClientStatus = 'VIP' | 'Regular' | 'Bloqueado';
@@ -43,6 +44,7 @@ export interface ClientItem {
 })
 export class AdminClientsComponent {
   private router = inject(Router);
+  private clientService = inject(ClientService);
   // Mock de clientes para compor a tela
   private data = signal<ClientItem[]>([
     { id: 1, name: 'Fulano Beltrano Silveira', email: 'fulano@email.com', phone: '+55 11 2345-6789', status: 'VIP', totalReservations: 15, lastVisit: '28/10/2025' },
@@ -99,22 +101,19 @@ export class AdminClientsComponent {
   addClient() { this.isNewOpen = true; }
   closeNewClient(){ this.isNewOpen = false; }
   onConfirmClient(payload: NewClientPayload){
-    const nextId = Math.max(0, ...this.data().map(d => d.id)) + 1;
-    const today = new Date();
-    const dd = String(today.getDate()).padStart(2, '0');
-    const mm = String(today.getMonth() + 1).padStart(2, '0');
-    const yyyy = today.getFullYear();
-    const item: ClientItem = {
-      id: nextId,
-      name: payload.name,
-      email: payload.email,
-      phone: payload.phone,
-      status: 'Regular',
-      totalReservations: 0,
-      lastVisit: `${dd}/${mm}/${yyyy}`,
-    };
-    this.data.set([item, ...this.data()]);
-    this.isNewOpen = false;
+    this.clientService.create(payload).subscribe(client => {
+      const item: ClientItem = {
+        id: client.id,
+        name: client.name,
+        email: client.email,
+        phone: client.phone,
+        status: client.status,
+        totalReservations: client.totalReservations,
+        lastVisit: client.lastVisit,
+      };
+      this.data.set([item, ...this.data()]);
+      this.isNewOpen = false;
+    });
   }
   editClient(id: number) { /* implementar depois */ }
   viewClient(id: number) {

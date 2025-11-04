@@ -8,7 +8,7 @@ import { Available } from '../models/available.model';
 })
 export class ReservationService {
 
-  private url: string = 'http://172.20.10.2:8080/reservation'
+  private url: string = 'http://177.102.233.197:25565/reservation'
 
   constructor(private http: HttpClient) {}
 

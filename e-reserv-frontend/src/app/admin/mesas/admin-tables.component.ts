@@ -11,6 +11,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ToggleOnClickDirective } from '../../core/directives/toggle-on-click.directive';
 import { Router } from '@angular/router';
 import { AdminNewTableDialogComponent, NewTablePayload } from './component/admin-new-table-dialog.component';
+import { TableService } from '../services/table.service';
 
 type TableStatus = 'Disponível' | 'Ocupada' | 'Reservada';
 
@@ -45,6 +46,7 @@ interface TableItem {
 })
 export class AdminTablesComponent {
   private router = inject(Router);
+  private tableService = inject(TableService);
   // Base data (mocked to match the provided layout)
   private data = signal<TableItem[]>([
     { id: 1, number: 1, name: 'Fulano de Tal', chairs: 4, area: 'Salão Principal', notes: 'Idoso, cadeirante', status: 'Ocupada' },

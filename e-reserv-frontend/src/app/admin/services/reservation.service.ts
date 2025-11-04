@@ -38,7 +38,7 @@ export class ReservationService {
     };
 
     // POST to backend; if API not ready, fall back to local result
-    return this.http.post<Reservation | any>('/api/reservations', payload).pipe(
+    return this.http.post<Reservation | any>('http://177.102.233.197:25565/reservations', payload).pipe(
       map((res: any) => {
         // Try to map backend response or use fallback shaped object
         if (res && typeof res === 'object') {

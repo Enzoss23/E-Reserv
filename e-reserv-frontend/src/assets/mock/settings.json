@@ -1,0 +1,12 @@
+{
+  "restaurantName": "Corrientes 348 - Barra da Tijuca",
+  "openingHour": "11:30",
+  "closingHour": "23:30",
+  "maxPartySize": 10,
+  "autoConfirmOnline": true,
+  "notifyEmail": true,
+  "notifySms": false,
+  "theme": "light",
+  "defaultArea": "Salão Principal"
+}
+

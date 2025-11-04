@@ -1,0 +1,9 @@
+[
+  { "id": 1, "number": 1, "name": "Fulano de Tal", "chairs": 4, "area": "Salão Principal", "notes": "Idoso, cadeirante", "status": "Ocupada", "shape": "Quadrada", "nearWindow": false, "wheelchair": true, "privateArea": false, "outdoor": false },
+  { "id": 2, "number": 2, "name": "Ciclano da Silva", "chairs": 6, "area": "Lounge Bar", "status": "Ocupada", "shape": "Redonda", "nearWindow": false, "wheelchair": false, "privateArea": false, "outdoor": false },
+  { "id": 3, "number": 3, "chairs": 10, "area": "Salão Principal", "status": "Disponível", "shape": "Retangular", "nearWindow": false, "wheelchair": false, "privateArea": false, "outdoor": false },
+  { "id": 4, "number": 4, "name": "Maria José João", "chairs": 10, "area": "Salão Principal", "notes": "2 crianças", "status": "Reservada", "shape": "Quadrada", "nearWindow": false, "wheelchair": false, "privateArea": false, "outdoor": false },
+  { "id": 5, "number": 5, "chairs": 8, "area": "Varanda", "status": "Disponível", "shape": "Redonda", "nearWindow": true, "wheelchair": false, "privateArea": false, "outdoor": true },
+  { "id": 6, "number": 6, "chairs": 8, "area": "Varanda", "status": "Disponível", "shape": "Retangular", "nearWindow": true, "wheelchair": false, "privateArea": false, "outdoor": true }
+]
+

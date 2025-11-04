@@ -8,6 +8,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { SettingsService, SettingsPayload } from '../services/settings.service';
 
 type Settings = {
   restaurantName: string;
@@ -41,6 +42,7 @@ const KEY = 'admin.settings';
   styleUrl: './admin-settings.component.css'
 })
 export class AdminSettingsComponent implements OnInit {
+  private settingsService = inject(SettingsService);
   form: Settings = {
     restaurantName: 'Corrientes 348 - Barra da Tijuca',
     openingHour: '11:30',
@@ -54,14 +56,15 @@ export class AdminSettingsComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    const raw = sessionStorage.getItem(KEY) || localStorage.getItem(KEY);
-    if (raw) {
-      try { this.form = { ...this.form, ...(JSON.parse(raw) as Settings) }; } catch {}
-    }
+    this.settingsService.get().subscribe(s => {
+      this.form = { ...this.form, ...(s as any) };
+    });
   }
 
   save() {
-    localStorage.setItem(KEY, JSON.stringify(this.form));
+    this.settingsService.save(this.form as SettingsPayload).subscribe(() => {
+      localStorage.setItem(KEY, JSON.stringify(this.form));
+    });
   }
 
   reset() {

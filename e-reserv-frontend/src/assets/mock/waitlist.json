@@ -1,0 +1,6 @@
+[
+  { "id": 1, "name": "Fulano de Tal", "people": 4, "phone": "+55 11 2345-6789", "notes": "Idoso, cadeirante", "priority": true, "waitingMin": 35, "createdAt": "2025-10-28T18:10:00.000Z" },
+  { "id": 2, "name": "Ciclano da Silva", "people": 6, "phone": "+55 11 2345-6789", "waitingMin": 39, "createdAt": "2025-10-28T18:05:00.000Z" },
+  { "id": 3, "name": "Maria José João", "people": 10, "phone": "+55 11 2345-6789", "notes": "2 crianças", "waitingMin": 41, "createdAt": "2025-10-28T17:58:00.000Z" }
+]
+

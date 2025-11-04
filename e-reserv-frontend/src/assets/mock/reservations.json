@@ -1,0 +1,47 @@
+[
+  {
+    "id": "101",
+    "origin": "Reserva manual",
+    "status": "Confirmada",
+    "assignedTable": "Mesa 4",
+    "date": "2025-09-28",
+    "time": "19:30",
+    "people": 4,
+    "area": "Salão Principal",
+    "name": "Fulano de Tal",
+    "phone": "+55 11 2345-6789",
+    "email": "fulano@email.com",
+    "cpf": "123.456.789-00",
+    "notes": "Aniversário"
+  },
+  {
+    "id": "102",
+    "origin": "Online",
+    "status": "Pendente",
+    "assignedTable": "",
+    "date": "2025-09-28",
+    "time": "20:00",
+    "people": 2,
+    "area": "Lounge Bar",
+    "name": "Maria Silva",
+    "phone": "+55 21 9988-7766",
+    "email": "maria@email.com",
+    "cpf": "987.654.321-00"
+  },
+  {
+    "id": "103",
+    "origin": "Telefone",
+    "status": "Cancelada",
+    "assignedTable": "Mesa 2",
+    "date": "2025-09-27",
+    "time": "21:00",
+    "people": 6,
+    "area": "Varanda",
+    "name": "João Pereira",
+    "phone": "+55 11 91234-5678",
+    "email": "joao@email.com",
+    "cpf": "222.333.444-55",
+    "notes": "Cliente solicitou cancelamento"
+  }
+]
+
